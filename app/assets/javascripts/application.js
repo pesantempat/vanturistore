@@ -11,8 +11,8 @@
 // about supported directives.
 //
 
+//= require jquery
 //= require adminlte
-//= require jquery3
 //= require bootstrap.bundle.min
 //= require jquery.overlayScrollbars.min
 //= require summernote-bs4.min
