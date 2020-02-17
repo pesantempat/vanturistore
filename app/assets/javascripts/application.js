@@ -13,8 +13,6 @@
 
 //= require adminlte
 //= require jquery3
-//= require jquery.min
-//= require jquery-ui.min
 //= require bootstrap.bundle.min
 //= require jquery.overlayScrollbars.min
 //= require summernote-bs4.min
