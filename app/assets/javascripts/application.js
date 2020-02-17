@@ -11,11 +11,13 @@
 // about supported directives.
 //
 
-//= require adminlte
+
+//= require jquery
 //= require jquery
 //= require jquery_ujs
 //= require rails-ujs
 //= require bootstrap
+//= require adminlte.min
 //= require activestorage
 //= require turbolinks
 //= require_tree .
