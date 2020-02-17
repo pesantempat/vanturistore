@@ -2,12 +2,12 @@ Rails.application.routes.draw do
  
  get 'home/index'
   #root :to => 'home#index'
-
- devise_for :users, path: 'users', controllers: { sessions: "users/sessions", registrations: "users/registrations"}, skip: [:sessions, :registrations]
-
+ 
  devise_scope :user do
-  	root :to => 'users/sessions#new'
+    root :to => 'users/sessions#new'
  end
+
+ devise_for :users, path: 'users', skip: [:sessions, :registrations]
 
  devise_scope :user do
   #sessions
