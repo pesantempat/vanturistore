@@ -24,9 +24,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="<%=destroy_user_session_path%>" data-method="delete" class="nav-link">Logout</a>
-      </li>
     </ul>
 
     <!-- SEARCH FORM -->
@@ -40,6 +37,7 @@
         </div>
       </div>
     </form>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class =>"pull-right" %>
 
   </nav>
   <!-- /.navbar -->

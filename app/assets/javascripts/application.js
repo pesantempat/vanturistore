@@ -22,5 +22,7 @@
 //= require moment.min
 //= require daterangepicker
 //= require jquery.knob.min
+//= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require_tree .
