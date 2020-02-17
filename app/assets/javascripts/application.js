@@ -11,14 +11,11 @@
 // about supported directives.
 //
 
-//= require jquery
 //= require adminlte
-//= require bootstrap.bundle.min
-//= require jquery.overlayScrollbars.min
-//= require summernote-bs4.min
-//= require tempusdominus-bootstrap-4.min
-//= require moment.min
-//= require daterangepicker
-//= require jquery.knob.min
+//= require jquery
+//= require jquery_ujs
 //= require rails-ujs
+//= require bootstrap
 //= require activestorage
+//= require turbolinks
+//= require_tree .

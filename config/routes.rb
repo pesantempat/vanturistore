@@ -7,13 +7,13 @@ Rails.application.routes.draw do
     root :to => 'users/sessions#new'
  end
 
- devise_for :users, path: 'users', skip: [:sessions, :registrations]
+ devise_for :users, path: 'users', controllers: { sessions: "users/sessions"}, skip: [:registrations]
 
  devise_scope :user do
   #sessions
-  get    'login_kpi',  to: 'users/sessions#new',     as: :new_user_session
-  post   'login_kpi',  to: 'users/sessions#create',  as: :user_session
-  delete 'logout', to: 'users/sessions#destroy', as: :destroy_user_session
+  #get    'login_kpi',  to: 'users/sessions#new',     as: :new_user_session
+  #post   'login_kpi',  to: 'users/sessions#create',  as: :user_session
+  #delete 'logout', to: 'users/sessions#destroy', as: :destroy_user_session
   #registrations
   put    '/account',  to: 'users/registrations#update'
   delete '/account',  to: 'users/registrations#destroy'
