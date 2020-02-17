@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--<title>AplikasiKpi</title>-->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'adminlte' %>
+    <%= javascript_include_tag 'jquery.min' %>
+    <%= javascript_include_tag 'jquery-ui.min' %>
+    <%= javascript_include_tag 'bootstrap.bundle.min' %>
+    <%= javascript_include_tag 'jquery.overlayScrollbars.min' %>
+    <%= javascript_include_tag 'summernote-bs4.min' %>
+    <%= javascript_include_tag 'tempusdominus-bootstrap-4.min' %>
+    <%= javascript_include_tag 'moment.min' %>
+    <%= javascript_include_tag 'daterangepicker' %>
+    <%= javascript_include_tag 'jquery.knob.min' %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+      <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
