@@ -17,13 +17,14 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: localhost
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: aplikasi-kpi_development
+  database: kpi-trial_development
   username: maulana
   password: 123456
 
@@ -59,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: aplikasi-kpi_test
+  database: kpi-trial_test
   username: maulana
   password: 123456
 
@@ -84,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: aplikasi-kpi_production
+  database: kpi-trial_production
   username: maulana
   password: 123456
