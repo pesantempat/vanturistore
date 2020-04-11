@@ -1,0 +1,82 @@
+<%= render 'layouts/header'%><br>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Tambah User</h3>
+            </div>
+              <!-- form start -->
+              <div id="quickForm">
+              <%= form_for @user, url: users_path(@user)  do |f| %>
+                <% if @user.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                    <ul>
+                    <% @user.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <div class="card-body">
+                  <div class="form-group">
+                    <%= f.label :email %><br />
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :Status_User %><br/>
+                    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+                  </div>
+               <div class="form-group">
+                  <%= f.label :password %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= f.password_field :password, autocomplete: "new-password", :class =>"form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password_confirmation %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control" %>
+                </div>
+                
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <%= f.submit  "Tambah User", :class =>"btn-sm btn-primary" %> || 
+                  <%= link_to 'Back', users_path, :class =>"btn btn-danger" %>
+                </div>
+                <%end%>
+              </div>          
+          </div>
+          <!-- /.card -->
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+    <!-- /.content -->
+</div>
+  <!-- /.content-wrapper -->
+
+<%= render 'layouts/footer'%>
+
+
+
+          
+

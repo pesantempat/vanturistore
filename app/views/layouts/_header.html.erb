@@ -17,7 +17,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<%=home_index_path%>" class="nav-link">Home</a>
+        <a href="<%= edit_user_registration_path %>" class="nav-link">Setting</a>
       </li>
       
     </ul>
@@ -49,12 +49,21 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <% if current_user.admin? %>
+        <div class="image">
+          <%= image_tag 'avatar2.png', :class =>"img-circle elevation-2"%>
+        </div>
+        <div class="info">
+          <a href="<%=home_index_path%>" class="d-block">Admin</a>
+        </div>
+      <%else%>  
         <div class="image">
           <%= image_tag 'avatar5.png', :class =>"img-circle elevation-2"%>
         </div>
         <div class="info">
-          <a href="<%=home_index_path%>" class="d-block">User</a>
+          <a href="<%=home_index_path%>" class="d-block">Karyawan</a>
         </div>
+      <%end%>  
       </div>
 
       <!-- Sidebar Menu -->
@@ -70,7 +79,21 @@
               </p>
             </a>
           </li>     
+        
+        <% if current_user.admin? %>
+          
+          <li class="nav-header">DATA KARYAWAN</li>
 
+          <li class="nav-item">
+            <a href="<%= users_path %>" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                 Data All KARYAWAN
+              </p>
+            </a>
+          </li>
+
+        <%else%>  
 
           <li class="nav-header">DATA KPI</li>
 
@@ -91,6 +114,8 @@
               </p>
             </a>
           </li>
+
+        <% end %>  
           
         </ul>
       </nav>

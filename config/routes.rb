@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
  devise_for :users, path: 'users', controllers: { sessions: "users/sessions", registrations: "users/registrations"}, skip: [:sessions, :registrations]
 
+ resources :users
+
  devise_scope :user do
   #sessions
   get    'login_kpi',  to: 'users/sessions#new',     as: :new_user_session
