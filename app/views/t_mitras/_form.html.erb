@@ -1,0 +1,42 @@
+<!-- form start -->
+<div id="quickForm">
+<%#= form_with(model: t_mitra, local: true) do |form| %>
+<%= form_for([@user, @t_mitra]) do |form| %>
+  <% if t_mitra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(t_mitra.errors.count, "error") %> prohibited this t_mitra from being saved:</h2>
+
+      <ul>
+      <% t_mitra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nama mitra</label>
+      <%= form.text_field :nama_mitra, :class=>"form-control", :placeholder =>"Nama mitra" %>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Alamat</label>
+      <%= form.text_area :alamat, :class =>"form-control", :placeholder =>"Alamat", :cols =>"30", :rows =>"5" %>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Telp</label>
+      <%= form.text_field :telp, :class=>"form-control", :placeholder =>"Telepon" %>
+    </div>
+
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer">
+    <%= form.submit :class =>"btn-sm btn-primary" %> || 
+    <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
+  </div>
+  <%end%>
+</div>
+
+
+          
+
+

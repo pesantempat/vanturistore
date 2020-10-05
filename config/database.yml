@@ -24,7 +24,7 @@ default: &default
 
 development:
   <<: *default
-  database: kpi-trial_development
+  database: pesantempat_development
   username: maulana
   password: 123456
 
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: kpi-trial_test
+  database: pesantempat_test
   username: maulana
   password: 123456
 
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: kpi-trial_production
+  database: pesantempat_production
   username: maulana
   password: 123456

@@ -42,7 +42,7 @@
     <!-- Brand Logo -->
     <a href="<%=home_index_path%>" class="brand-link">
       <%= image_tag 'AdminLTELogo.png', :class =>"brand-image img-circle elevation-3", :style =>"opacity: .8" %>     
-      <span class="brand-text font-weight-light">Aplikasi KPI Trial</span>
+      <span class="brand-text font-weight-light">Pesantempat.com</span>
     </a>
 
     <!-- Sidebar -->
@@ -61,7 +61,7 @@
           <%= image_tag 'avatar5.png', :class =>"img-circle elevation-2"%>
         </div>
         <div class="info">
-          <a href="<%=home_index_path%>" class="d-block">Karyawan</a>
+          <a href="<%=home_index_path%>" class="d-block">Mitra</a>
         </div>
       <%end%>  
       </div>
@@ -82,38 +82,38 @@
         
         <% if current_user.admin? %>
           
-          <li class="nav-header">DATA KARYAWAN</li>
+          <li class="nav-header">DATA MiTRA</li>
 
           <li class="nav-item">
             <a href="<%= users_path %>" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                 Data All KARYAWAN
+                 Data Mitra
               </p>
             </a>
           </li>
 
         <%else%>  
 
-          <li class="nav-header">DATA KPI</li>
+          <li class="nav-header">DATA PESAN TEMPAT</li>
 
           <li class="nav-item">
-            <a href="<%=new_t_task_path%>" class="nav-link">
+            <a href="<%#=new_t_task_path%>" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                 Create Task
+                 Data Pesan Tempat
               </p>
             </a>
           </li>
-
+          <!--
           <li class="nav-item">
-            <a href="<%=t_tasks_path%>" class="nav-link">
+            <a href="<%#=t_tasks_path%>" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
                  Data Task
               </p>
             </a>
-          </li>
+          </li>-->
 
         <% end %>  
           

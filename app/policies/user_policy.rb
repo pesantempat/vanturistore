@@ -7,11 +7,11 @@ class UserPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.admin? or @current_mitra
   end
 
   def show?
-    @current_user.admin? or @current_karyawan == @user
+    @current_user.admin? or @current_mitra == @user
   end
 
   def new?
@@ -27,7 +27,7 @@ class UserPolicy
   end
 
   def destroy?
-    return false if @current_karyawan == @user
+    return false if @current_mitra == @user
     @current_user.admin?
   end
 

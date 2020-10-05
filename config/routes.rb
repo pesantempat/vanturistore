@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-  resources :t_tasks
+  resources :t_mitras
  get 'home/index'
   #root :to => 'home#index'
  
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
  devise_scope :user do
   #sessions
-  get    'login_kpi',  to: 'users/sessions#new',     as: :new_user_session
-  post   'login_kpi',  to: 'users/sessions#create',  as: :user_session
+  get    'login_pesantempat',  to: 'users/sessions#new',     as: :new_user_session
+  post   'login_pesantempat',  to: 'users/sessions#create',  as: :user_session
   delete 'logout', to: 'users/sessions#destroy', as: :destroy_user_session
   #registrations
   put    '/account',  to: 'users/registrations#update'
@@ -32,4 +32,9 @@ Rails.application.routes.draw do
   #post  'new-pass',  to: 'devise/passwords#create', as: :user_password
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :users do
+    resources :t_mitras
+  end
+
 end
