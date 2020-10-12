@@ -10,9 +10,9 @@ class TMitraPolicy
     @current_user.admin?
   end
 
-  #def dataprofil?
-    #@current_user.karyawan?
-  #end
+  def profilmitra?
+    @current_user.mitra?
+  end
 
   def show?
     @current_user.admin? or @current_user.mitra?

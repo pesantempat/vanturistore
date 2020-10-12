@@ -1,6 +1,6 @@
 class TMitrasController < ApplicationController
   before_action :set_t_mitra, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, except:[:show, :index]
+  before_action :set_user, except:[:show, :index, :profilmitra]
   before_action :authenticate_user!
   after_action :verify_authorized
 
@@ -17,6 +17,12 @@ class TMitrasController < ApplicationController
   def show
     authorize @t_mitra
     @user = User.all
+  end
+
+  def profilmitra
+    authorize TMitra
+    @t_mitras = TMitra.all
+    @t_mitras = current_user.t_mitras
   end
 
   # GET /t_mitras/new

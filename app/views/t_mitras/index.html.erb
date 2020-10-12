@@ -58,7 +58,7 @@
                     <th>Alamat</th>
                     <th>Telp</th>
                     <th>Akun Login</th>
-                    <% if current_user.mitra?%>
+                    <% if current_user.admin?%>
                     <th></th>
                     <%end%>
                   </tr>
@@ -70,7 +70,7 @@
                     <td><%= t_mitra.alamat %></td>
                     <td><%= t_mitra.telp %></td>
                     <td><%= t_mitra.user.email %></td>
-                    <% if current_user.mitra? %>
+                    <% if current_user.admin? %>
                     <td><%#= link_to 'Create Task', t_karyawan, :class =>"btn-sm btn-info" %>
                     <%#= link_to 'Edit', edit_t_karyawan_path(t_karyawan), :class =>"btn-sm btn-success" %>
                     <%#= link_to 'Destroy', t_karyawan, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>

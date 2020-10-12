@@ -82,13 +82,22 @@
         
         <% if current_user.admin? %>
           
-          <li class="nav-header">DATA MiTRA</li>
+          <li class="nav-header">DATA MITRA</li>
 
           <li class="nav-item">
             <a href="<%= users_path %>" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                 Data Mitra
+                 Data Mitra Login
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<%= t_mitras_path %>" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                 Profil Mitra
               </p>
             </a>
           </li>
@@ -105,15 +114,15 @@
               </p>
             </a>
           </li>
-          <!--
+          
           <li class="nav-item">
-            <a href="<%#=t_tasks_path%>" class="nav-link">
+            <a href="<%=profilmitra_path%>" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                 Data Task
+                 Profil Mitra
               </p>
             </a>
-          </li>-->
+          </li>
 
         <% end %>  
           

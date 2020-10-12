@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :t_mitras
  get 'home/index'
   #root :to => 'home#index'
+
+  get 'profilmitra' => 't_mitras#profilmitra'
  
  devise_scope :user do
     root :to => 'users/sessions#new'

@@ -1,0 +1,95 @@
+<%= render 'layouts/header'%>
+<style>
+  th {
+    font-size: 14px;
+  }
+
+  td {
+    font-size: 13px;
+  }
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h5 class="m-0 text-dark">Profil Mitra</h5>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
+            <li class="breadcrumb-item active">Profil Mitra</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <%flash.each do |name, msg| %> 
+              <div class="alert alert-success alert-dismissable">
+                <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+                <%= notice %>
+              </div>
+            <% end %>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Profil Mitra</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nama Mitra</th>
+                    <th>Alamat</th>
+                    <th>No Telepon</th>
+                    <th>Akun Login</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @t_mitras.each do |t_mitra| %>
+                  <tr>
+                    <td><%= t_mitra.nama_mitra %></td>
+                    <td><%= t_mitra.alamat %></td>
+                    <td><%= t_mitra.telp %></td>
+                    <td><%= t_mitra.user.email %></td>
+                    <!--<td><%#= link_to 'Create Task', t_mitra, :class =>"btn-sm btn-info" %>
+                    <%#= link_to 'Edit', edit_t_mitra_path(t_mitra), :class =>"btn-sm btn-success" %>
+                    <%#= link_to 'Destroy', t_mitra, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>
+                      <%#= link_to 'Edit', edit_user_t_mitra_path(t_mitra.user, t_mitra), :class =>"btn-sm btn-success" %>
+                     <%#= link_to 'Destroy', user_t_mitra_path(t_mitra.user, t_mitra), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>
+                     <%#= link_to 'Lihat Data KPI', t_mitra_t_tasks_path(t_mitra), :class =>"btn-sm btn-primary"%>
+                    </td>-->
+                  </tr>  
+                <% end %>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<%= render 'layouts/footer'%>
+
