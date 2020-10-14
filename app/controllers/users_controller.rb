@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   after_action :verify_authorized
 
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def create
@@ -49,13 +51,16 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     authorize user
     user.destroy
-    redirect_to users_path, :notice => "User deleted."
+    redirect_to users_path, :notice => "User has been deactivated."
   end
 
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def secure_params
-    params.require(:user).permit(:role, :email, :password)
+    params.require(:user).permit(:role, :email, :password, :deactivated)
   end
 
 end

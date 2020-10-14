@@ -1,0 +1,61 @@
+<%= render 'layouts/header'%><br>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Edit Mitra</h3>
+            </div>
+              <!-- form start -->
+              <div id="quickForm">
+              <%= form_for (@user) do |f| %>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class=>"form-control", :placeholder =>"Email" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Deactivated Login</label>
+                    <%#= f.text_field :deactivated, autofocus: true, autocomplete: "deactivated", :class=>"form-control", :placeholder =>"deactivated" %>
+                    <%= f.select(:deactivated, options_for_select([
+                    ["True", "true"], 
+                    ["False", "false"],   
+                    ], :selected => f.object.deactivated), {:include_blank => true}, {:class => "form-control"} ) %>
+                  </div>
+                  
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <%= f.submit :class =>"btn-sm btn-primary" %> || 
+                  <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
+                </div>
+                <%end%>
+              </div>         
+          </div>
+          <!-- /.card -->
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+    <!-- /.content -->
+</div>
+  <!-- /.content-wrapper -->
+
+<%= render 'layouts/footer'%>
+
+

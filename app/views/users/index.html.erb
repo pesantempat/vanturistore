@@ -42,7 +42,10 @@
                     <th>Email</th>
                     <th>Status</th>
                     <th></th>
-                    <th></th>  
+                    <th></th>
+                    <th>Status Login</th> 
+                    <th></th> 
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -59,6 +62,14 @@
                             <%= link_to 'Detail Data Mitra', user, :class =>"btn-sm btn-warning" %></td>
                           <%end%>
                       <% end %>
+                      <td><%=user.deactivated%></td>
+                      <td><% if user.deactivated %>
+                          <%= link_to("Deactivated", user_path(user), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-danger btn-sm") unless user == current_user %>
+                          <% else %>
+                          <%= link_to("Deactivated", user_path(user), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-success btn-sm") unless user == current_user %>
+                          <%end%>
+                      </td>
+                      <td><%= link_to 'Edit', edit_user_path(user), :class =>"btn-sm btn-success" %></td>
                     </tr>
                   <% end %>
                   </tbody>

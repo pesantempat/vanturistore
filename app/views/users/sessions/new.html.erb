@@ -31,10 +31,21 @@
   <div class="limiter">
     <div class="container-login100" style="background-image: url('/assets/bg-03.jpg');">
       <div class="wrap-login100 p-t-30 p-b-50">
+        <% if alert %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= alert %>
+          </div>
+        <% elsif notice %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= notice %>
+          </div>
+        <% end %>
+        <%= devise_error_messages! %>
         <span class="login100-form-title p-b-41">
           Login
         </span>
-
         <div class="login100-form validate-form p-b-33 p-t-5">
         <%= form_for( resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="wrap-input100 validate-input" data-validate = "Enter username">

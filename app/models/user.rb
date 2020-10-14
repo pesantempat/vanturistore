@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	has_many :t_mitras
+
 	enum role: [:admin, :mitra]
 	after_initialize :set_default_role, :if => :new_record?
 
@@ -6,9 +8,17 @@ class User < ApplicationRecord
 		self.role ||= :admin
 	end	
 
+	def destroy
+		update_attributes(deactivated: true) unless deactivated
+	end	
+
+	def active_for_authentication?
+		super && !deactivated
+	end	
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :t_mitras
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
