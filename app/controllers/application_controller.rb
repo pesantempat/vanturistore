@@ -6,11 +6,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-	def after_sign_in_path_for(resource_or_scope)
-	  home_index_path
-	end
+  	def user_not_authorized
+		flash[:notice] = "Access denied."
+		redirect_to (request.referrer || home_index_path)
+    end
 
-	def after_sign_out_path_for(resource_or_scope)
-	  root_path
-	end
+	#def after_sign_in_path_for(resource_or_scope)
+	  #home_index_path
+	#end
+
+	#def after_sign_out_path_for(resource_or_scope)
+	  #root_path
+	#end
 end

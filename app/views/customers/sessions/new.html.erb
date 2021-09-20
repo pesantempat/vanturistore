@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Log in Customer</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+  <%= stylesheet_link_tag "logincustomer.css" %>
+  <style>
+    .alert-danger {
+    color: #fff;
+	  background-color: #07a99c;
+	  font-weight: 400;
+}
+  </style>
+
+</head>
+<div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+          <% if alert %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= alert %>
+          </div>
+        <% elsif notice %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= notice %>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="booking-cta">
+              <h2>Log in your Program</h2>
+            </div>
+          </div>  
+          <div class="col-md-12 col-md-offset-1"> 
+            <div class="booking-form">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.email_field :email, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"email" %>
+                      <span class="form-label">Email</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.password_field :password, :class =>"form-control", :required => true, :autocomplete =>"current-password" %>
+                      <span class="form-label">Password</span>
+                    </div>
+                  </div>
+                  <!--<div class="col-md-6">
+                    <div class="form-group">
+                      <%#= form.label :tanggal_pesan, :style =>"color:#2b9328" %><br>
+                      <%= f.date_field :brithday_customer, :class =>"form-control", default: Time.zone.now, :required => true, min: Date.today %>
+                      <span class="form-label">Tanggal Pesan</span>
+                    </div>
+                  </div>-->
+                </div>
+                <div class="form-btn">
+                  <%= f.submit "Log in", :class =>"submit-btn" %>
+                </div>
+
+                <% if devise_mapping.rememberable? %>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end %>
+              <%end%>
+              <%= render "customers/shared/links" %>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('.form-control').each(function () {
+      floatedLabel($(this));
+    });
+
+    $('.form-control').on('input', function () {
+      floatedLabel($(this));
+    });
+
+    function floatedLabel(input) {
+      var $field = input.closest('.form-group');
+      if (input.val()) {
+        $field.addClass('input-not-empty');
+      } else {
+        $field.removeClass('input-not-empty');
+      }
+    }
+  </script>

@@ -1,25 +1,93 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Change My Passwor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================--> 
+  <%= favicon_link_tag asset_path('favicon.ico') %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'bootstrap.min' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'font-awesome.min' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'icon-font.min' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'animate' %>
+<!--===============================================================================================-->  <%= stylesheet_link_tag    'hamburgers.min' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'animsition.min' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'select2.min' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'daterangepicker' %>
+<!--===============================================================================================-->
+  <%= stylesheet_link_tag    'util' %>
+  <%= stylesheet_link_tag    'main' %>
+<!--===============================================================================================-->
+</head>
+<body>
+  
+  <div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-03.jpg');">
+      <div class="wrap-login100 p-t-30 p-b-50">
+        <% if alert %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= alert %>
+          </div>
+        <% elsif notice %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= notice %>
+          </div>
+        <% end %>       
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%#= devise_error_messages! %>
+        <span class="login100-form-title p-b-41">
+          Change My Password
+        </span>
+        <div class="login100-form validate-form p-b-33 p-t-5">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+            <%= f.password_field :password, autocomplete: "new-password", :class=>"input100", :placeholder =>"New Password" %>
+            <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <% end %>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", :class=>"input100", :placeholder =>"New Password Confirmation" %>
+            <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+          </div>
+          <div class="container-login100-form-btn m-t-32">
+            <button class="login100-form-btn">
+               <%= f.submit "Change My password",:style =>"background:transparent; color:#fff" %>
+            </button>
+          </div>
+          <%= render "users/shared/links" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+  
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <div id="dropDownSelect1"></div>
+  
+<!--===============================================================================================-->
+  <%= javascript_include_tag 'animsition.min' %>
+<!--===============================================================================================-->
+  <%= javascript_include_tag 'popper' %>
+  <%= javascript_include_tag 'bootstrap.min' %>
+<!--===============================================================================================-->
+  <%= javascript_include_tag 'select2.min' %>
+<!--===============================================================================================-->
+  <%= javascript_include_tag 'countdowntime' %>
+<!--===============================================================================================-->
+  <%= javascript_include_tag 'main' %>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+</body>
+</html>
 
-<%= render "users/shared/links" %>

@@ -44,7 +44,7 @@
         <% end %>
         <%= devise_error_messages! %>
         <span class="login100-form-title p-b-41">
-          Login
+          Login Admin
         </span>
         <div class="login100-form validate-form p-b-33 p-t-5">
         <%= form_for( resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -69,7 +69,7 @@
                <%= f.submit "LOGIN",:style =>"background:transparent; color:#fff" %>
             </button>
           </div>
-          <%#= render "users/shared/links" %>
+          <%= render "users/shared/links" %>
         <% end %>
         </div>
       </div>

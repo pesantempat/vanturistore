@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Edit Customer</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+  <%= stylesheet_link_tag "logincustomer.css" %>
+  <style>
+    .alert-danger {
+    color: #fff;
+	  background-color: #07a99c;
+	  font-weight: 400;
+    }
+    .booking-form {
+      max-width: 760px;
+      padding: 15px 25px 0px 25px;
+    }
+  </style>
+
+</head>
+<div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+          <% if alert %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= alert %>
+          </div>
+        <% elsif notice %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= notice %>
+          </div>
+        <% end %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="booking-cta">
+              <h2>Edit <%= resource_name.to_s.humanize %></h2>
+            </div>
+          </div>  
+          <div class="col-md-12 col-md-offset-1"> 
+            <div class="booking-form">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.text_field :name_customer, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"name_customer" %>
+                      <span class="form-label">Name Customer</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.email_field :email, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"email" %>
+                      <span class="form-label">Email</span>
+                    </div>
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
+                      <span class="form-label">Phone Customer</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.date_field :brithday_customer, :class =>"form-control", default: Time.zone.now, :required => true %>
+                      <span class="form-label">Brithday</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.password_field :password, :class =>"form-control", :required => true, :autocomplete =>"new-password" %>
+                      <span class="form-label">New Password</span>
+                      <% if @minimum_password_length %>
+                        <em><%= @minimum_password_length %> characters minimum</em>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.password_field :password_confirmation, :class =>"form-control", :required => true, :autocomplete =>"new-password" %>
+                      <span class="form-label">Password Confirmation</span>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.password_field :current_password, :class =>"form-control", :required => true, :autocomplete =>"current-password" %>
+                      <span class="form-label">Current-Password</span>
+                      <i>(we need your current password to confirm your changes)</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-btn">
+                  <%= f.submit "Update", :class =>"submit-btn" %>
+                </div>
+              <%end%>
+              <div class="row" style ="margin-top: 10px;">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> 
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= render "customers/shared/links" %> <%= link_to "Back", :back, :style => "color:#07a99c"%>
+                    </div>
+                  </div>
+              </div>          
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('.form-control').each(function () {
+      floatedLabel($(this));
+    });
+
+    $('.form-control').on('input', function () {
+      floatedLabel($(this));
+    });
+
+    function floatedLabel(input) {
+      var $field = input.closest('.form-group');
+      if (input.val()) {
+        $field.addClass('input-not-empty');
+      } else {
+        $field.removeClass('input-not-empty');
+      }
+    }
+  </script>
+

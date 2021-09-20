@@ -18,3 +18,5 @@ Rails.application.config.assets.precompile += %w( adminlte.js jquery.min.js jque
 Rails.application.config.assets.precompile += %w( bootstrap.min.css font-awesome.min.css icon-font.min.css animate.css hamburgers.min.css animsition.min.css select2.min.css daterangepicker.css util.css main.css )
 
 Rails.application.config.assets.precompile += %w( animsition.min.js popper.js bootstrap.min.js select2.min.js countdowntime.js main.js )
+
+Rails.application.config.assets.precompile += %w( logincustomer.css)

@@ -39,10 +39,11 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>username</th>
                     <th>Email</th>
                     <th>Status</th>
                     <th></th>
-                    <th></th>
+                    <th style="min-width:145px;"></th>
                     <th>Status Login</th> 
                     <th></th> 
                     <th></th>
@@ -51,12 +52,13 @@
                   <tbody>
                   <% @users.each do |user| %>
                     <tr>
+                      <td><%= user.name %></td>
                       <td><%= user.email %></td>
                       <td><%= user.role %></td>
                       <td style="text-align: center;"><%= form_for(user) do |f| %>
                       <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
                       <%= f.submit 'Change Role', :data => { :confirm => "Are you sure change status?" }, class:"btn btn-info btn-sm" %></td>
-                      <td><% if user.t_mitras.empty? %>
+                      <td style="text-align:center;"><% if user.t_mitras.empty? %>
                             <%= link_to 'Input Data Mitra Baru', user, :class =>"btn-sm btn-success" %></td>
                           <%else%>
                             <%= link_to 'Detail Data Mitra', user, :class =>"btn-sm btn-warning" %></td>

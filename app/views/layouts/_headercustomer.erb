@@ -17,7 +17,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<%= edit_user_registration_path %>" class="nav-link">Setting</a>
+        <a href="<%= edit_customer_registration_path %>" class="nav-link">Setting</a>
       </li>
       
     </ul>
@@ -33,14 +33,14 @@
         </div>
       </div>
     </form>-->
-        <a href="<%=destroy_user_session_path%>" rel="nofollow" data-method="delete" class="nav-link">Log Out</a>
+        <a href="<%=destroy_customer_session_path%>" rel="nofollow" data-method="delete" class="nav-link">Log Out</a>
       
   </nav>
   <!-- /.navbar -->
     <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<%=home_index_path%>" class="brand-link">
+    <a href="<%=homecustomer_path%>" class="brand-link">
       <%= image_tag 'AdminLTELogo.png', :class =>"brand-image img-circle elevation-3", :style =>"opacity: .8" %>     
       <span class="brand-text font-weight-light">bisniscepat.com</span>
     </a>
@@ -48,22 +48,13 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <% if current_user.admin? %>
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">  
         <div class="image">
-          <%= image_tag 'avatar2.png', :class =>"img-circle elevation-2"%>
+          <%= image_tag 'avatar5.png', :class =>"img-circle elevation-2"%>
         </div>
         <div class="info">
-          <a href="<%=home_index_path%>" class="d-block">Admin</a>
-        </div>
-      <%else%>  
-        <div class="image">
-          <%= image_tag 'favicon.ico', :class =>"img-circle elevation-2"%>
-        </div>
-        <div class="info">
-          <a href="<%=home_index_path%>" class="d-block"><%= current_user.name %></a>
-        </div>
-      <%end%>  
+          <a href="<%=homecustomer_path%>" class="d-block"><%= current_customer.name_customer %></a>
+        </div> 
       </div>
 
       <!-- Sidebar Menu -->
@@ -72,53 +63,21 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<%=home_index_path%>" class="nav-link active">
+            <a href="<%=homecustomer_path%>" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
-          </li>     
-        
-        <% if current_user.admin? %>
-          
-          <li class="nav-header">DATA MITRA</li>
+          </li>       
 
-          <li class="nav-item">
-            <a href="<%= users_path %>" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                 Data Mitra Login
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="<%= t_mitras_path %>" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>
-                 Profil Mitra
-              </p>
-            </a>
-          </li>
-
-        <%else%>  
-          <li class="nav-item">
-            <a href="<%=profilmitra_path%>" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>
-                 My Profil
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-header">Create Your Program</li>
+          <li class="nav-header">DATA PESAN TEMPAT</li>
 
           <li class="nav-item">
             <a href="<%#=new_t_task_path%>" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                 Program Loyality
+                My Program Loyality
               </p>
             </a>
           </li>
@@ -127,13 +86,20 @@
             <a href="<%#=new_t_task_path%>" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                 Program Referral
+                My Program Referral
               </p>
             </a>
           </li>
-
-        <% end %>  
           
+          <!--<li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                 My Profil
+              </p>
+            </a>
+          </li>-->  
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
