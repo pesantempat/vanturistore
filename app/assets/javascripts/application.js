@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery
 //= require rails-ujs
+//= require popper
 //= require bootstrap
 //= require adminlte.min
 //= require activestorage
