@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
  
-  resources :t_mitras
- get 'home/index'
+  resources :t_mitras, :path => 'mitra'
+ get 'home/index' 
   #root :to => 'home#index'
 
   get 'profilmitra' => 't_mitras#profilmitra'
@@ -61,7 +61,7 @@ end
 
 
   resources :users do
-    resources :t_mitras
+    resources :t_mitras, :path => 'mitra'
   end
 
 end
