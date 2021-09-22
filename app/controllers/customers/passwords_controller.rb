@@ -21,11 +21,15 @@ class Customers::PasswordsController < Devise::PasswordsController
   #   super
   # end
 
+  def after_resetting_password_path_for(resource)
+    homecustomer_path
+  end
+
   # protected
 
-  # def after_resetting_password_path_for(resource)
-  #   super(resource)
-  # end
+  #def after_resetting_password_path_for(resource)
+    #homecustomer_path
+  #end
 
   # The path used after sending reset password instructions
   # def after_sending_reset_password_instructions_path_for(resource_name)

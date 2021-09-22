@@ -16,6 +16,10 @@ class Users::PasswordsController < Devise::PasswordsController
   #   super
   # end
 
+  def after_resetting_password_path_for(resource)
+    home_index_path
+  end
+
   # PUT /resource/password
   # def update
   #   super

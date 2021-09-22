@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     @t_mitras = TMitra.all
     @t_mitras = current_user.t_mitras
   end
+  
   def index2
+  end
+
+  def landingpage
   end
 end

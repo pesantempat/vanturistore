@@ -18,6 +18,10 @@ class Customers::RegistrationsController < Devise::RegistrationsController
     new_customer_session_path
   end
 
+  def after_update_path_for(resource)
+    homecustomer_path
+  end
+
   # GET /resource/edit
   # def edit
   #   super
