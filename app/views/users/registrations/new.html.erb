@@ -31,6 +31,12 @@
   <div class="limiter">
     <div class="container-login100" style="background-image: url('/assets/bg-01.jpg');">
       <div class="wrap-login100 p-t-30 p-b-50">
+        <% resource.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= message %>
+          </div>
+        <% end %> 
         <span class="login100-form-title p-b-41">
           Account Login
         </span>

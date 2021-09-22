@@ -41,8 +41,14 @@
             <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
               <%= notice %>
           </div>
+        <% end %> 
+        <% resource.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= message %>
+          </div>
         <% end %>       
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%#= render "devise/shared/error_messages", resource: resource %>
         <%#= devise_error_messages! %>
         <span class="login100-form-title p-b-41">
           Resend Confirmation Intructions
