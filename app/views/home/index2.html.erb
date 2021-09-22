@@ -33,9 +33,18 @@ input, button, select, optgroup, textarea {
 }
 </style>
 <!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper" style="background-color:rgb(237, 233, 233)">
+  <%flash.each do |name, msg| %> 
+    <div class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+        <%= notice %>
+    </div>
+  <% end %>
   <marquee><h1 style="color: #07a99c; font-weight: bold; margin-top:20%;"></h1></marquee>
+
   
+
 </div>
   <!-- /.content-wrapper -->
 
