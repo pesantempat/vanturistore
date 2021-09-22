@@ -24,7 +24,7 @@
 <div id="booking" class="section">
     <div class="section-center">
       <div class="container">
-          <% if alert %>
+        <% if alert %>
           <div class="alert alert-danger alert-dismissable">
             <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
               <%= alert %>
@@ -33,9 +33,15 @@
           <div class="alert alert-danger alert-dismissable">
             <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
               <%= notice %>
-          </div>
+          </div>  
         <% end %>
-         <%= render "devise/shared/error_messages", resource: resource %>
+        <% resource.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+              <%= message %>
+          </div>
+        <% end %>   
+        <%#= render "devise/shared/error_messages", resource: resource %>
         <div class="row">
           <div class="col-md-12">
             <div class="booking-cta">
