@@ -234,4 +234,111 @@
 	background-color: #07a99c;
 	font-weight: 400;
   }
+
+    /*----------------START RESPONSIVE DESIGN------------*/
+
+@media (max-width:1280px){
+
+	.loginBtn--facebook:before {
+		/*border-right: #364e92 1px solid;*/
+		margin-left: 31%;
+	  }
+	
+	}
+	
+	
+	
+	@media (max-width:1112px){
+	
+	.loginBtn--facebook:before {
+		/*border-right: #364e92 1px solid;*/
+		margin-left: 31%;
+	}
+	
+	}
+	
+	@media (max-width:961px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 31%;
+		  }
+	
+	 }
+	
+	
+	@media (max-width:812px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 30%;
+		  }
+	
+	 }
+	
+	 @media (max-width:740px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 26%;
+		  }
+	
+	}
+	
+	@media (max-width:640px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 26%;
+		  }
+	
+	 }
+	
+	@media (max-width:480px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 17%;
+		  }
+	
+	 }
+	
+	 @media (max-width: 414px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 16%;
+		  }
+	}
+	
+	@media (max-width: 384px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 12%;
+		  }
+	
+	}
+	
+	@media (max-width:360px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 11%;
+		  }
+	
+	}
+
+	@media (max-width:320px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 3%;
+		  }
+	
+	}
+
+	@media (max-width:280px){
+		.loginBtn--facebook:before {
+			/*border-right: #364e92 1px solid;*/
+			margin-left: 2%;
+		  }
+		.loginBtn {
+			font-size: 12px;
+		  }  
+	
+	}
+	
+	/*----------------END RESPONSIVE DESIGN------------*/
   
