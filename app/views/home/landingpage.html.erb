@@ -32,8 +32,14 @@
                         <div class="booking-cta">
                             <h2 style="text-align: center;">Bisniscepat.com</h2>
                             <p style="text-align: center;">Earn Rewards at Cafe/Restaurant</p>
+                            <% unless current_customer %> 
                             <div class="booking-form" style="background: transparent; box-shadow: none; margin-top:-40px;">
                                 <button class="submit-btn"><a href="<%=new_customer_registration_path%>" style="color: #fff;">Join Our Program</a></button>
+                            <%else%>
+                            <div class="booking-form" style="background: transparent; box-shadow: none; margin-top:-40px;">
+                                <button class="submit-btn"><a href="<%=homecustomer_path%>" style="color: #fff;">Go To Home</a></button>
+
+                            <%end%>    
                         </div>
                         </div>
                     </div>

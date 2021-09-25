@@ -7,21 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Edit Customer</title>
-
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+  
   <%= stylesheet_link_tag "logincustomer.css" %>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+   <%#= javascript_include_tag 'utils' %>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <style>
-    .alert-danger {
-    color: #fff;
-	  background-color: #07a99c;
-	  font-weight: 400;
-    }
     .booking-form {
       max-width: 760px;
       padding: 15px 25px 0px 25px;
     }
+    input {
+  width: 250px;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+}
+input::placeholder {
+  color: #BBB;
+}
   </style>
 
 </head>
@@ -55,6 +61,41 @@
           <div class="col-md-12 col-md-offset-1"> 
             <div class="booking-form">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <% if current_customer.provider == "facebook"%>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.text_field :name_customer, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"name_customer" %>
+                      <span class="form-label">Name Customer</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.email_field :email, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"email" %>
+                      <span class="form-label">Email</span>
+                    </div>
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%#= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
+                      <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Phone Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
+                      <span class="form-label">Phone Customer</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.date_field :brithday_customer, :class =>"form-control", default: Time.zone.now, :required => true %>
+                      <span class="form-label">Brithday</span>
+                    </div>
+                  </div>
+                </div>  
+                  <div class="form-btn">
+                    <%= f.submit "Update", :class =>"submit-btn" %>
+                  </div>
+              <%else%>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -85,7 +126,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <%= f.password_field :password, :class =>"form-control", :required => true, :autocomplete =>"new-password" %>
+                      <%= f.password_field :password, :class =>"form-control", :autocomplete =>"new-password" %>
                       <span class="form-label">New Password</span>
                       <% if @minimum_password_length %>
                         <em><%= @minimum_password_length %> characters minimum</em>
@@ -94,7 +135,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <%= f.password_field :password_confirmation, :class =>"form-control", :required => true, :autocomplete =>"new-password" %>
+                      <%= f.password_field :password_confirmation, :class =>"form-control", :autocomplete =>"new-password" %>
                       <span class="form-label">Password Confirmation</span>
                     </div>
                   </div>
@@ -109,6 +150,7 @@
                 <div class="form-btn">
                   <%= f.submit "Update", :class =>"submit-btn" %>
                 </div>
+              <%end%>  
               <%end%>
               <div class="row" style ="margin-top: 10px;">
                   <div class="col-md-6">
@@ -118,7 +160,9 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <%= render "customers/shared/links" %> <%= link_to "Back", :back, :style => "color:#07a99c"%>
+                      <%#= render "customers/shared/links" %>
+                      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :style => "color:#07a99c" %> 
+                      <br><%= link_to "Back", :back, :style => "color:#07a99c"%>
                     </div>
                   </div>
               </div>          
@@ -131,6 +175,27 @@
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<!--
+ <script>
+    var input = document.querySelector("#customer_phone_customer");
+    window.intlTelInput(input, {
+      formatOnInit: true,
+      separateDialCode: true,
+      hiddenInput: "full_phone",
+      initialCountry: "id",
+      geoIpLookup: function(callback) {
+        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "us";
+          callback(countryCode);
+        });
+      },
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" 
+    });
+ </script>
+-->
+  
   <script>
     $('.form-control').each(function () {
       floatedLabel($(this));
@@ -149,4 +214,6 @@
       }
     }
   </script>
+
+
 

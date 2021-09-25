@@ -12,13 +12,6 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
   <%= stylesheet_link_tag "logincustomer.css" %>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <style>
-    .alert-danger {
-    color: #fff;
-	  background-color: #07a99c;
-	  font-weight: 400;
-}
-  </style>
 
 </head>
 <div id="booking" class="section">
@@ -77,6 +70,11 @@
                 <% end %>
               <%end%>
               <%= render "customers/shared/links" %>
+              <a rel="nofollow" data-method="post" href="/customers/auth/facebook">
+                <button class="loginBtn loginBtn--facebook">
+                  Login with Facebook
+                </button>
+              </a>
             </div>  
           </div>
         </div>

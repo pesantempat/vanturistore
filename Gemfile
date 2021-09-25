@@ -35,6 +35,10 @@ gem 'devise'
 
 gem 'pundit'
 
+gem 'omniauth-facebook'
+
+gem 'omniauth-rails_csrf_protection'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

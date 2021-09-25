@@ -22,6 +22,15 @@ class Customers::RegistrationsController < Devise::RegistrationsController
     homecustomer_path
   end
 
+  def update_resource(resource, params)
+    if current_customer.provider == "facebook"
+      params.delete("current_password")
+      resource.update_without_password(params)
+    else
+      resource.update_with_password(params)
+    end
+  end
+
   # GET /resource/edit
   # def edit
   #   super
