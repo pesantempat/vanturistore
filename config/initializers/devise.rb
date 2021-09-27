@@ -302,6 +302,6 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
   #config.omniauth_path_prefix = "/customers/auth"
   config.scoped_views = true
-  #config.omniauth :facebook, '370216938094352', 'da60be7184b997d0787da837eacb7ad8', callback_url: 'http://localhost:3000/customers/auth/facebook/callback'
+  #config.omniauth :facebook, '184954697098925', '96162c07ef14fd077ef4b95174e9a417', callback_url: 'http://localhost:3000/customers/auth/facebook/callback'
   config.omniauth :facebook, '370216938094352', 'da60be7184b997d0787da837eacb7ad8', callback_url: 'https://mybisniscepat.herokuapp.com/customers/auth/facebook/callback' 
 end

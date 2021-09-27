@@ -26,7 +26,12 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <p id="notice"><%= notice %></p>
+              <%flash.each do |name, msg| %> 
+                    <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+                        <%= notice %>
+                    </div>
+                <% end %>
               <div class="card-header">
                 <h3 class="card-title">MITRA</h3>
                 <%= link_to 'Tambah Mitra Baru', new_user_path, class:"btn-sm btn-primary float-right" %>

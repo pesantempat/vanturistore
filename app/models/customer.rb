@@ -33,6 +33,8 @@ class Customer < ApplicationRecord
 		  customer.email = auth.info.email
 		  customer.password = Devise.friendly_token[0,20]
 		  customer.name_customer = auth.info.name   # assuming the user model has a name
+		  #customer.brithday_customer = auth.info.user_birthday
+		  #customer.phone_customer = auth.info.phone_number
 		  customer.image = auth.info.image # assuming the user model has an image
 		  customer.confirmed_at = Time.zone.now
 		end

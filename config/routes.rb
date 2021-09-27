@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get 'customers/index'
   resources :t_mitras, :path => 'mitra'
  get 'home/index' 
   #root :to => 'home#index'
@@ -42,6 +43,8 @@ end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 devise_for :customers, path: 'customers', controllers: { sessions: "customers/sessions", registrations: "customers/registrations", passwords: "customers/passwords", omniauth_callbacks: "customers/omniauth_callbacks"}, skip: [:sessions, :registrations]
+
+resources :customers
 
 devise_scope :customer do
   #sessions
