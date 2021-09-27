@@ -13,10 +13,10 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( adminlte.min.js jquery.overlayScrollbars.min.js daterangepicker.js utils.js )
+Rails.application.config.assets.precompile += %w( adminlte.min.js daterangepicker.js utils.js )
 
-Rails.application.config.assets.precompile += %w( bootstrap.min.css font-awesome.min.css icon-font.min.css animate.css hamburgers.min.css animsition.min.css select2.min.css daterangepicker.css util.css main.css )
+Rails.application.config.assets.precompile += %w( icon-font.min.css animsition.min.css daterangepicker.css util.css main.css )
 
-Rails.application.config.assets.precompile += %w( animsition.min.js popper.js bootstrap.min.js select2.min.js countdowntime.js main.js )
+#Rails.application.config.assets.precompile += %w( animsition.min.js popper.js bootstrap.min.js select2.min.js countdowntime.js main.js )
 
 Rails.application.config.assets.precompile += %w( logincustomer.css)

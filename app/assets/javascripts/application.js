@@ -14,7 +14,7 @@
 
 
 //= require rails-ujs
-//= require popper
+// require popper
 //= require jquery
 // require utils
 //= require adminlte

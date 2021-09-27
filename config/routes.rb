@@ -9,6 +9,8 @@ root :to => 'home#landingpage'
   get 'profilmitra' => 't_mitras#profilmitra'
 
   get 'homecustomer' => 'home#index2'
+
+  get 'kebijakanprivasi' => 'home#kebijakanprivasi'
  
  #devise_scope :user do
     #root :to => 'users/sessions#new'

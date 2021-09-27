@@ -11,4 +11,7 @@ class HomeController < ApplicationController
 
   def landingpage
   end
+
+  def kebijakanprivasi
+  end
 end
