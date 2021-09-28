@@ -1,0 +1,31 @@
+<!-- form start -->
+<div id="quickForm">
+<%= form_with(model: reward, local: true) do |form| %>
+  <% if reward.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% reward.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Reward Name</label>
+      <%= form.text_field :reward_name, :class=>"form-control", :placeholder =>"Reward Name" %>
+    </div>
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer">
+    <%= form.submit :class =>"btn-sm btn-primary" %> || 
+    <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
+  </div>
+  <%end%>
+</div>
+
+
+          
+
+
+

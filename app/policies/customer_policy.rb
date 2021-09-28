@@ -23,6 +23,7 @@ class CustomerPolicy
     end
     
     def destroy?
+        return false if @current_mitra == @user
         @current_user.admin? or @current_user.mitra?
     end
   end

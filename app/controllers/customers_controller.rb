@@ -27,10 +27,12 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    customer = Customer.find(params[:id])
-    authorize customer
-    customer.destroy
-    redirect_to customers_path, :notice => "Customer has been deactivated."
+    authorize Customer
+    @customer.destroy
+    respond_to do |format|
+      format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -39,7 +41,7 @@ class CustomersController < ApplicationController
   end
 
   def secure_params
-    params.require(:customer).permit(:role, :deactivated_customer)
+    params.require(:customer).permit(:role, :deactivated_customer, :name_customer, :email, :password, :password_confirmation, :brithday_customer, :phone_customer)
   end
 
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :rewards
   get 'customers/index'
   resources :t_mitras, :path => 'mitra'
  get 'home/index' 

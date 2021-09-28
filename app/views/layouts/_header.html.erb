@@ -83,6 +83,15 @@
           </li>     
         
         <% if current_user.admin? %>
+
+          <li class="nav-item">
+            <a href="<%= rewards_path %>" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                 Create Rewards
+              </p>
+            </a>
+          </li>
           
           <li class="nav-header">DATA MITRA</li>
 
