@@ -49,6 +49,47 @@
                 <%= notice %>
               </div>
             <% end %>
+            <% if current_user.admin?%>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Data Loyalty Program</h3>
+                <%#= link_to 'Tambah Loyalty Program',new_t_mitra_loyalty_program_path, class:"btn-sm btn-primary float-right" %>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th style="min-width: 200px; text-align: center;">Reward</th>
+                    <th style="min-width: 140px;text-align: center;">Name Mitra Created</th>
+                    <th style="text-align: center;">Point loyalty</th>
+                    <th style="text-align: center;">Start loyalty</th>
+                    <th style="text-align: ">End loyalty</th>
+                    <th style="text-align: center;">Status loyalty</th>
+                    <th style="text-align: center; min-width: 160px;">Keterangan loyalty</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                   <% @loyalty_programs.each do |loyalty_program| %>
+                  <tr>
+                    <td><%= loyalty_program.reward.reward_name %></td>
+                    <td><%= loyalty_program.t_mitra.nama_mitra%></td>
+                    <td style="text-align: center;"><%= loyalty_program.point_loyalty %></td>
+                    <td><%= loyalty_program.start_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td style="text-align: center;"><%= loyalty_program.status_loyalty %></td>
+                    <td><%= loyalty_program.keterangan_loyalty %></td>
+                   </tr>
+                <% end %>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <%else%>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Data Loyalty Program</h3>
@@ -90,6 +131,7 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            <%end%>
           </div>
           <!-- /.col -->
         </div>

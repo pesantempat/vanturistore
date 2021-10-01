@@ -170,14 +170,12 @@
           </li>
 
           <li class="nav-item">
-            <% @t_mitras.each do |t_mitra| %>
-            <a href="<%= t_mitra_loyalty_programs_path(t_mitra) %>" class="nav-link">
+            <a href="<%= loyalty_programs_path %>" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                 Loyalty Program
+                 All Loyalty Program
               </p>   
             </a>
-            <% end %>
           </li>
 
         <%else%>

@@ -1,14 +1,19 @@
 class LoyaltyProgramsController < ApplicationController
   before_action :set_loyalty_program, only: %i[ show edit update destroy ]
-  before_action :set_t_mitra 
+  before_action :set_t_mitra , except: [:index]
   before_action :authenticate_user!
   after_action :verify_authorized
 
   # GET /loyalty_programs or /loyalty_programs.json
   def index
-    #@loyalty_programs = LoyaltyProgram.all
-    @loyalty_programs = LoyaltyProgram.where(t_mitra_id: params[:t_mitra_id]).order("created_at DESC").all
     authorize LoyaltyProgram
+    if current_user.admin?
+      @loyalty_programs = LoyaltyProgram.all
+    else  
+    @loyalty_programs = LoyaltyProgram.where(t_mitra_id: params[:t_mitra_id]).order("created_at DESC").all
+    @t_mitras = current_user.t_mitras
+    @t_mitra = TMitra.find(params[:t_mitra_id])
+    end
   end
 
   # GET /loyalty_programs/1 or /loyalty_programs/1.json

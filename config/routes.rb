@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-  #resources :loyalty_programs
+  resources :loyalty_programs, only: [:index]
   resources :rewards
   get 'customers/index'
   resources :t_mitras, :path => 'mitra'
