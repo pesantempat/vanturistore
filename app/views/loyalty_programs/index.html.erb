@@ -29,7 +29,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
-            <li class="breadcrumb-item active">Data Reward</li>
+            <li class="breadcrumb-item active">Data Loyalty Program</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -51,8 +51,8 @@
             <% end %>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data Reward</h3>
-                <%= link_to 'Tambah Reward', new_reward_path, class:"btn-sm btn-primary float-right" %>
+                <h3 class="card-title">Data Loyalty Program</h3>
+                <%= link_to 'Tambah Loyalty Program',new_t_mitra_loyalty_program_path, class:"btn-sm btn-primary float-right" %>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -60,17 +60,27 @@
                 <table id="example" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                   <th style="text-align: center;">Action</th>
-                   <th style="text-align: center;">Reward Name</th>
+                    <th style="min-width: 200px; text-align: center;">Reward</th>
+                    <th style="text-align: center;">Point loyalty</th>
+                    <th style="text-align: center;">Start loyalty</th>
+                    <th style="text-align: ">End loyalty</th>
+                    <th style="text-align: center;">Status loyalty</th>
+                    <th style="text-align: center; min-width: 160px;">Keterangan loyalty</th>
+                    <th style="min-width: 160px;"></th>
                   </tr>
                   </thead>
                   <tbody>
-                   <% @rewards.each do |reward| %>
+                   <% @loyalty_programs.each do |loyalty_program| %>
                   <tr>
-                    <td style="text-align: center;"><%= link_to 'Show', reward, :class =>"btn-sm btn-info" %>
-                    <%= link_to 'Edit', edit_reward_path(reward), :class =>"btn-sm btn-success" %>
-                    <%#= link_to 'Destroy', reward, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>
-                    <td><%= reward.reward_name %></td>
+                    <td><%= loyalty_program.reward.reward_name %></td>
+                    <td style="text-align: center;"><%= loyalty_program.point_loyalty %></td>
+                    <td><%= loyalty_program.start_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td style="text-align: center;"><%= loyalty_program.status_loyalty %></td>
+                    <td><%= loyalty_program.keterangan_loyalty %></td>
+                    <td><%= link_to 'Show', t_mitra_loyalty_program_path(@t_mitra,loyalty_program), :class =>"btn-sm btn-info" %>
+                    <%= link_to 'Edit', edit_t_mitra_loyalty_program_path(loyalty_program.t_mitra, loyalty_program), :class =>"btn-sm btn-success" %>
+                    <%= link_to 'Destroy', t_mitra_loyalty_program_path(loyalty_program.t_mitra, loyalty_program), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %></td>
                    </tr>
                 <% end %>
                   </tbody>
@@ -111,5 +121,6 @@
 </script>
 
 <%= render 'layouts/footer'%>
+
 
 

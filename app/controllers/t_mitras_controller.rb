@@ -90,6 +90,7 @@ class TMitrasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_t_mitra
       @t_mitra = TMitra.find(params[:id])
+      @t_mitras = current_user.t_mitras
     end
 
      def set_user

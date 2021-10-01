@@ -9,6 +9,49 @@
   .nav-link:hover {
   text-decoration: underline 2px solid #07a99c;
   }
+  .card-header {
+    background-color: #07a99c !important;
+    color: #fff;
+    font-weight: 700;  
+  }
+
+  .card-title {
+    float: left;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .content-header {
+    padding: 0px .5rem;
+  }
+
+  label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 500;
+    color: #07a99c;
+  }
+
+  .submit-btn {
+  color: #fff;
+  background-color: #07a99c;
+  font-weight: 700;
+  height: 40px;
+  padding: 10px 35px;
+  font-size: 14px;
+  border: none;
+  display: block;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+ .submit-btn:hover {
+  background-color: #0ac0b1;
+}
+
+.ui-widget-header {
+    border: 1px solid #07a99c !important;
+    background: #07a99c !important;
+    }
   </style>
   
 </head>
@@ -16,7 +59,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="z-index: auto;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -83,15 +126,6 @@
           </li>     
         
         <% if current_user.admin? %>
-
-          <li class="nav-item">
-            <a href="<%= rewards_path %>" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>
-                 Create Rewards
-              </p>
-            </a>
-          </li>
           
           <li class="nav-header">DATA MITRA</li>
 
@@ -113,6 +147,8 @@
             </a>
           </li>
 
+          <li class="nav-header">DATA CUSTOMER</li>
+
            <li class="nav-item">
             <a href="<%= customers_path %>" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -120,6 +156,28 @@
                  Data Customer
               </p>
             </a>
+          </li>
+
+          <li class="nav-header">PROGRAM</li>
+
+          <li class="nav-item">
+            <a href="<%= rewards_path %>" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                 Create Rewards
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <% @t_mitras.each do |t_mitra| %>
+            <a href="<%= t_mitra_loyalty_programs_path(t_mitra) %>" class="nav-link">
+              <i class="nav-icon fas fa-id-card"></i>
+              <p>
+                 Loyalty Program
+              </p>   
+            </a>
+            <% end %>
           </li>
 
         <%else%>
@@ -142,22 +200,26 @@
             </a>
           </li>
 
+          
+
           <li class="nav-header">Create Your Program</li>
+          
+          <li class="nav-item">
+            <% @t_mitras.each do |t_mitra| %>
+            <a href="<%= t_mitra_loyalty_programs_path(t_mitra) %>" class="nav-link">
+              <i class="nav-icon fas fa-id-card"></i>
+              <p>
+                 Loyalty Program
+              </p>   
+            </a>
+          <% end %>
+          </li>
 
           <li class="nav-item">
             <a href="<%#=new_t_task_path%>" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                 Program Loyality
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="<%#=new_t_task_path%>" class="nav-link">
-              <i class="nav-icon fas fa-id-card"></i>
-              <p>
-                 Program Referral
+                 Referral Program
               </p>
             </a>
           </li>

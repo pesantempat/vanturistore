@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:update, :show, :edit, :destroy]
   before_action :authenticate_user!
+   before_action :set_t_mitra 
   after_action :verify_authorized
 
   def index
@@ -39,6 +40,10 @@ class CustomersController < ApplicationController
   def set_customer
     @customer = Customer.find(params[:id])
   end
+
+  def set_t_mitra
+      @t_mitras = current_user.t_mitras
+    end
 
   def secure_params
     params.require(:customer).permit(:role, :deactivated_customer, :name_customer, :email, :password, :password_confirmation, :brithday_customer, :phone_customer)

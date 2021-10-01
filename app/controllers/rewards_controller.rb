@@ -1,5 +1,6 @@
 class RewardsController < ApplicationController
   before_action :set_reward, only: %i[ show edit update destroy ]
+  before_action :set_t_mitra
   before_action :authenticate_user!
   after_action :verify_authorized
 
@@ -69,6 +70,10 @@ class RewardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_reward
       @reward = Reward.find(params[:id])
+    end
+
+    def set_t_mitra
+      @t_mitras = current_user.t_mitras
     end
 
     # Only allow a list of trusted parameters through.

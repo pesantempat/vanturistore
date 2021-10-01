@@ -1,4 +1,11 @@
 <%= render 'layouts/header'%>
+<style>
+  .btn-primary {
+    color: #07a99c !important;
+    background-color: #fff !important;
+    border-color: #007bff;
+  }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -6,7 +13,6 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h5 class="m-0 text-dark">Mitra</h5>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -34,7 +40,7 @@
                 <% end %>
               <div class="card-header">
                 <h3 class="card-title">MITRA</h3>
-                <%= link_to 'Tambah Mitra Baru', new_user_path, class:"btn-sm btn-primary float-right" %>
+                <%#= link_to 'Tambah Mitra Baru', new_user_path, class:"btn-sm btn-primary float-right" %>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

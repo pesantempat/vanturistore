@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point_customer: 1
+  point_loyalty: 1
+  start_loyalty: 2021-09-29 20:27:21
+  end_loyalty: 2021-09-29 20:27:21
+  status_loyalty: MyString
+  keterangan_loyalty: MyText
+  reward: one
+
+two:
+  point_customer: 1
+  point_loyalty: 1
+  start_loyalty: 2021-09-29 20:27:21
+  end_loyalty: 2021-09-29 20:27:21
+  status_loyalty: MyString
+  keterangan_loyalty: MyText
+  reward: two
