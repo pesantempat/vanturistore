@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
  
-  resources :loyalty_programs, only: [:index]
+  #resources :loyalty_point_transactions
+  #resources :loyalty_points
+  resources :loyalty_programs, only: [:index], :path => 'loyalty-reward'
   resources :rewards
   get 'customers/index'
   resources :t_mitras, :path => 'mitra'
@@ -31,7 +33,7 @@ root :to => 'home#landingpage'
   #registrations
   put    '/account-admin-bisniscepat',  to: 'users/registrations#update'
   delete '/account-admin-bisniscepat',  to: 'users/registrations#destroy'
-  #post   '/account',  to: 'users/registrations#create'
+  #post   '/account-admin-bisniscepat',  to: 'users/registrations#create'
   #get    '/register', to: 'users/registrations#new',    as: :new_user_registration
   get    '/account-admin-bisniscepat',  to: 'users/registrations#edit',   as: :edit_user_registration
   patch  '/account-admin-bisniscepat',  to: 'users/registrations#update', as: :user_registration
@@ -74,7 +76,18 @@ end
   end
 
   resources :t_mitras, :path => 'mitra' do
-    resources :loyalty_programs
+    get 'myreward' => 'loyalty_programs#my_reward'
+    resources :loyalty_programs, :path => 'loyalty-reward'
+    get 'redeemed' => 'loyalty_programs#redeemed'
+     resources :loyalty_point_transactions, :path => 'point-transaction'
+  end
+
+   resources :customers do
+    get 'mypoint' => 'loyalty_points#mypoint'
+    resources :t_mitras, :path => 'mitra'
+    resources :loyalty_points, :path => 'point' do
+      resources :loyalty_point_transactions, :path => 'point-transaction'
+    end
   end
 
 end

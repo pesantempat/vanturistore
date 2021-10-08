@@ -10,6 +10,10 @@ class LoyaltyProgramPolicy
     @current_user.admin? or @current_user.mitra?
   end
 
+  def my_reward?
+    @current_user.mitra?
+  end
+
   def show?
     @current_user.admin? or @current_user.mitra?
   end

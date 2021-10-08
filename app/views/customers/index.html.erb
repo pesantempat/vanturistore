@@ -46,8 +46,7 @@
                     <th style="min-width:100px; text-align:center;">Telephone</th>
                     <th style="text-align:center;">Brithday</th>
                     <th colspan="2" style="text-align:center;">Status Akun Login</th>
-                    <th style="text-align:center;">roles</th>
-                    <th style="text-align:center;">provider</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -63,17 +62,16 @@
                         ["True", "true"], 
                         ["False", "false"],   
                         ], :selected => f.object.deactivated_customer))%>
-                        <%= f.submit 'Change Role', :data => { :confirm => "Are you sure change status?" }, class:"btn btn-info btn-sm", style: "margin-top:5px;" %></td><% end %>
+                        <%= f.submit 'Change Activated', :data => { :confirm => "Are you sure change status?" }, class:"btn btn-info btn-sm", style: "margin-top:5px;" %></td><% end %>
                       <td style="vertical-align: middle;">
                         <% if customer.deactivated_customer == false %>
                             <button class="btn btn-success btn-sm"> Activated </button>
                         <%else%>
                             <button class="btn btn-danger btn-sm"> Deactivated </button>
                         <%end%></td>  
-                      <td><%= customer.role %></td>
-                      <td><%= customer.provider %></td>
                       <!--<td><%#= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>-->
-                      </td>   
+                      </td>
+                      <td></td>   
                     </tr>
                   <%end%>
                   </tbody>
@@ -97,17 +95,12 @@
 
 
 <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
+  $(document).ready(function() {
+    $('#example1').DataTable( {
+       "order": [[ 1, "desc" ]]
+    } );
+} );
 </script>
+
 
 <%= render 'layouts/footer'%>

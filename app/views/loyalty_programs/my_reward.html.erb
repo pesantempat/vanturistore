@@ -1,4 +1,4 @@
-<%= render 'layouts/headercustomer'%>
+<%= render 'layouts/header'%>
 <style>
   th {
     font-size: 14px;
@@ -28,6 +28,8 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
+            <li class="breadcrumb-item active">Data Loyalty Reward</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -49,7 +51,8 @@
             <% end %>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Join Program Loyalty</h3>
+                <h3 class="card-title">Data Loyalty Reward</h3>
+                <%= link_to 'Tambah Loyalty Reward',new_t_mitra_loyalty_program_path, class:"btn-sm btn-primary float-right" %>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -57,32 +60,33 @@
                 <table id="example" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama Mitra</th>
-                    <th>Join Program Loyalty</th>
+                    <th style="min-width: 200px; text-align: center;">Reward</th>
+                    <th style="text-align: center;">Point loyalty</th>
+                    <th style="text-align: center;">Start loyalty</th>
+                    <th style="text-align: ">End loyalty</th>
+                    <th style="text-align: center;">Status loyalty</th>
+                    <th style="text-align: center; min-width: 160px;">Keterangan loyalty</th>
+                    <th style="min-width: 75px;"></th>
                   </tr>
                   </thead>
                   <tbody>
-                  <% @t_mitras.each do |t_mitra| %>
+                   <% @loyalty_programs.each do |loyalty_program| %>
                   <tr>
-                    <td><%= t_mitra.nama_mitra %></td>
-                    <td><% if loyalty_point = @loyalty_points.find_by(customer_id: current_customer.id, t_mitra_id: t_mitra.id) %>
-                        <%= link_to "View My Loyalty Point",
-                                      customer_mypoint_path(current_customer.id),
-                                      class: "btn btn-primary btn-sm" %>
-                        <% else %>
-                          <%= link_to "Join Program Loyalty",
-                                      customer_loyalty_points_path(current_customer.id,
-                                                          :t_mitra_id => t_mitra.id,
-                                                          :customer_id => current_customer.id),
-                                      class: "btn btn-success btn-sm",
-                                      :method => :post %>
-                        <% end %>
-                    </td> 
+                    <td><%= loyalty_program.reward.reward_name %></td>
+                    <td style="text-align: center;"><%= loyalty_program.point_loyalty %></td>
+                    <td><%= loyalty_program.start_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td style="text-align: center;"><%= loyalty_program.status_loyalty %></td>
+                    <td><%= loyalty_program.keterangan_loyalty %></td>
+                    <td><%= link_to 'Show', t_mitra_loyalty_program_path(@t_mitra,loyalty_program), :class =>"btn-sm btn-info" %>
+                    <%= link_to 'Edit', edit_t_mitra_loyalty_program_path(loyalty_program.t_mitra, loyalty_program), :class =>"btn-sm btn-success" %>
+                    <%#= link_to 'Destroy', t_mitra_loyalty_program_path(loyalty_program.t_mitra, loyalty_program), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %></td>
                    </tr>
                 <% end %>
                   </tbody>
                 </table>
-              </div>
+              </div><br>
+                <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
               </div>
               <!-- /.card-body -->
             </div>
@@ -117,7 +121,7 @@
 } );
 </script>
 
-<%= render 'layouts/footercustomer'%>
+<%= render 'layouts/footer'%>
 
 
 

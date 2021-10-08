@@ -1,4 +1,8 @@
-<%= render 'layouts/header'%>
+<% if user_signed_in?%>
+  <%= render 'layouts/header'%>
+<%else customer_signed_in?%>
+  <%= render 'layouts/headercustomer'%>
+<%end%>
 <style>
   th {
     font-size: 14px;
@@ -6,6 +10,12 @@
 
   td {
     font-size: 13px;
+  }
+
+  .btn-primary {
+    color: #07a99c !important;
+    background-color: #fff !important;
+    border-color: #007bff;
   }
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -23,7 +33,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
-            <li class="breadcrumb-item active">Profil Mitra</li>
+            <li class="breadcrumb-item active">History Loyalty Point</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -45,7 +55,11 @@
             <% end %>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data Mitra</h3>
+                <h4 style="text-align: center;">History Loyalty Point</h4>
+                <%#= link_to 'Tambah Loyalty Program',new_t_mitra_loyalty_program_path, class:"btn-sm btn-primary float-right" %>
+                <p>Name : <%= @loyalty_point.customer.name_customer %></p>
+				        <p>Store: <%= @loyalty_point.t_mitra.nama_mitra %></p>
+				        <p>Point: <%= @loyalty_point.point_customer %></p>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -53,39 +67,26 @@
                 <table id="example" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama Mitra</th>
-                    <th>Alamat</th>
-                    <th>Telp</th>
-                    <th>Email Log in</th>
-                    <% if current_user.admin?%>
-                    <th></th>
-                    <%end%>
+                    <th style="min-width: 200px; text-align: center;">Point</th>
+                    <th style="min-width: 140px;text-align: center;">Update at</th>
+                    <th style="text-align: center;">Transaksi Type</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <% @t_mitras.each do |t_mitra| %>
-                  <tr>
-                    <td><%= t_mitra.nama_mitra %></td>
-                    <td><%= t_mitra.alamat %></td>
-                    <td><%= t_mitra.telp %></td>
-                    <td><%= t_mitra.user.email %></td>
-                    <% if current_user.admin? %>
-                    <td><%#= link_to 'Create Task', t_karyawan, :class =>"btn-sm btn-info" %>
-                    <%#= link_to 'Edit', edit_t_karyawan_path(t_karyawan), :class =>"btn-sm btn-success" %>
-                    <%#= link_to 'Destroy', t_mitra, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>
-                      <%= link_to 'Edit', edit_user_t_mitra_path(t_mitra.user, t_mitra), :class =>"btn-sm btn-success" %>
-                     <%#= link_to 'Destroy', user_t_mitra_path(t_mitra.user, t_mitra), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>
-                    </td> 
-                    <%end%>
-                   </tr>
-                <% end %>
+                  <% @approved.each do |trans| %>
+				    <tr>
+				      <td><%= trans.point_customer_transaction %></td>
+				      <td><%= trans.updated_at.strftime("%d/%m/%Y (%H:%M:%S)") %></td>
+				      <td><%= trans.trans_type %></td>
+				    </tr>
+				  <% end %>
                   </tbody>
                 </table>
-              </div>
+              </div><br>
+                <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
               </div>
               <!-- /.card-body -->
             </div>
-            <!-- /.card -->
           </div>
           <!-- /.col -->
         </div>
@@ -112,16 +113,13 @@
 <script>
   $(document).ready(function() {
     $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
+       "order": [[ 1, "desc" ]]
     } );
 } );
 </script>
 
-<%= render 'layouts/footer'%>
+<%= render 'layouts/footercustomer'%>
+
+
+
 

@@ -1,5 +1,6 @@
 <%= render 'layouts/header'%>
-<style>
+<% if current_user.admin?%>
+  <style>
   .container-fluid {
     width: 100%;
     padding-right: 8px;
@@ -47,6 +48,99 @@ input, button, select, optgroup, textarea {
   
 </div>
   <!-- /.content-wrapper -->
+<%else%>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
+            <li class="breadcrumb-item active">Customer</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <%flash.each do |name, msg| %> 
+                    <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+                        <%= notice %>
+                    </div>
+                <% end %>
+              <div class="card-header">
+                <h3 class="card-title">Data Customer Join My Loyalty</h3>
+                <%#= link_to 'Tambah Mitra Baru', new_customer_path, class:"btn-sm btn-primary float-right" %>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th style="min-width:160px; text-align:center">Nama Customer</th>
+                    <th style="text-align:center;">Email</th>
+                    <th style="min-width: 100px;"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @customers.each do |customer| %>
+                    <% if customer.loyalty_points.exists? %>
+                    <tr>
+                      <td><%= customer.name_customer %></td>
+                      <td><%= customer.email %></td>
+                      <td style="vertical-align: middle; text-align: center;">
+                            <%= link_to 'Give Point', customer_loyalty_points_path(customer.id), :class =>"btn btn-primary btn-sm", :style =>" background-color:#07a99c; border:#07a99c"%> 
+                      </td>    
+                    </tr>
+                    <%end%>
+                  <%end%>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<%end%>
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>  
 
 <%= render 'layouts/footer'%>
 

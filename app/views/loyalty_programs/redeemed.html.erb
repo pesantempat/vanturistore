@@ -28,6 +28,8 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
+            <li class="breadcrumb-item active">Redeemed Point</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -49,7 +51,8 @@
             <% end %>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Join Program Loyalty</h3>
+                <h3 class="card-title">Redeemed Point</h3>
+                <h3 class="card-title" style="float: right;"> My Point:&nbsp;<%= @loyalty_point.point_customer%></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -57,32 +60,41 @@
                 <table id="example" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama Mitra</th>
-                    <th>Join Program Loyalty</th>
+                    <th style="min-width: 200px; text-align: center;">Reward</th>
+                    <th style="text-align: center;">Point</th>
+                    <th style="text-align: center; ">End</th>
+                    <th style="text-align: center;">Expired</th>
+                    <th style="text-align: center; min-width: 160px;">Syarat & Ketentuan</th>
+                    <th style="text-align: center;">Rendeem Point</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <% @t_mitras.each do |t_mitra| %>
+                   <% @loyalty_programs.each do |loyalty_program| %>
                   <tr>
-                    <td><%= t_mitra.nama_mitra %></td>
-                    <td><% if loyalty_point = @loyalty_points.find_by(customer_id: current_customer.id, t_mitra_id: t_mitra.id) %>
-                        <%= link_to "View My Loyalty Point",
-                                      customer_mypoint_path(current_customer.id),
-                                      class: "btn btn-primary btn-sm" %>
+                    <td><%= loyalty_program.reward.reward_name %></td>
+                    <td style="text-align: center;"><%= loyalty_program.point_loyalty %></td>
+                    <td><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></td>
+                    <td><%= loyalty_program.date_expired%> Hari</td>
+                    <td><%= loyalty_program.keterangan_loyalty %></td>
+                    <% if loyalty_program.end_loyalty >= Date.today - 1.day %>
+                    <td> <% if @loyalty_point.point_customer >= loyalty_program.point_loyalty %>
+                          <%= link_to "Redeem points for this reward",
+                                      customer_loyalty_point_loyalty_point_transactions_path(current_customer.id, @loyalty_point.id, :trans_type => "redeemed-point", :loyalty_program_id => loyalty_program.id),
+                                      class: "btn btn-primary",
+                                      :method => :post %>            
                         <% else %>
-                          <%= link_to "Join Program Loyalty",
-                                      customer_loyalty_points_path(current_customer.id,
-                                                          :t_mitra_id => t_mitra.id,
-                                                          :customer_id => current_customer.id),
-                                      class: "btn btn-success btn-sm",
-                                      :method => :post %>
+                          <button type="button" class="btn btn-primary" disabled="disabled">Not enough points</button>
                         <% end %>
-                    </td> 
+                    </td>
+                    <%else%>
+                    <td style="text-align: center;"><button type= "button" class="btn btn-primary" disabled="disabled">Expired</button></td> 
+                    <%end%>
                    </tr>
                 <% end %>
                   </tbody>
                 </table>
-              </div>
+              </div><br>
+                <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
               </div>
               <!-- /.card-body -->
             </div>

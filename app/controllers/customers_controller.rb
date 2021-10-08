@@ -5,11 +5,9 @@ class CustomersController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @customers = Customer.all
+    @customers = Customer.all.order("name_customer ASC")
     authorize Customer
   end
-
- 
 
   def edit
     authorize @customer

@@ -204,20 +204,19 @@
           
           <li class="nav-item">
             <% @t_mitras.each do |t_mitra| %>
-            <a href="<%= t_mitra_loyalty_programs_path(t_mitra) %>" class="nav-link">
+            <a href="<%= t_mitra_myreward_path(t_mitra) %>" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                 Loyalty Program
+                 My Reward
               </p>   
             </a>
           <% end %>
           </li>
 
           <li class="nav-item">
-            <a href="<%#=new_t_task_path%>" class="nav-link">
+            <a href="<%= home_index_path %>" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
-              <p>
-                 Referral Program
+                 Join My Loyality
               </p>
             </a>
           </li>

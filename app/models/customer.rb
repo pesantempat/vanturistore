@@ -1,4 +1,5 @@
 class Customer < ApplicationRecord
+	has_many :loyalty_points
 
 # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

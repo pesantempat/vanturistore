@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point_customer_transaction: 1
+  trans_type: MyString
+  loyalty_point: one
+
+two:
+  point_customer_transaction: 1
+  trans_type: MyString
+  loyalty_point: two

@@ -7,6 +7,49 @@
     .nav-link:hover {
   text-decoration: underline 2px solid #07a99c;
   }
+  .card-header {
+    background-color: #07a99c !important;
+    color: #fff;
+    font-weight: 700;  
+  }
+
+  .card-title {
+    float: left;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .content-header {
+    padding: 0px .5rem;
+  }
+
+  label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 500;
+    color: #07a99c;
+  }
+
+  .submit-btn {
+  color: #fff;
+  background-color: #07a99c;
+  font-weight: 700;
+  height: 40px;
+  padding: 10px 35px;
+  font-size: 14px;
+  border: none;
+  display: block;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+ .submit-btn:hover {
+  background-color: #0ac0b1;
+}
+
+.ui-widget-header {
+    border: 1px solid #07a99c !important;
+    background: #07a99c !important;
+    }
   </style>
   
 </head>
@@ -61,25 +104,21 @@
             </a>
           </li>       
 
-          <li class="nav-header">DATA PESAN TEMPAT</li>
+          <li class="nav-header">DATA LOYALTY</li>
 
           <li class="nav-item">
-            <a href="<%#=new_t_task_path%>" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                My Program Loyality
-              </p>
-            </a>
+            <% @t_mitras.each do |t_mitra| %>
+              <% if loyalty_point = @loyalty_points.find_by(customer_id: current_customer.id, t_mitra_id: t_mitra.id) %>
+              <a href="<%=customer_mypoint_path(current_customer.id)%>" class="nav-link">
+                <i class="nav-icon fas fa-coins"></i>
+                <p>
+                  My Loyalty Point
+                </p>
+              </a>
+              <%end%>
+            <%end%>
           </li>
 
-          <li class="nav-item">
-            <a href="<%#=new_t_task_path%>" class="nav-link">
-              <i class="nav-icon fas fa-id-card"></i>
-              <p>
-                My Program Referral
-              </p>
-            </a>
-          </li>
           
           <!--<li class="nav-item">
             <a href="#" class="nav-link">

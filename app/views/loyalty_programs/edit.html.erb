@@ -10,9 +10,88 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Loyalty Program</h3>
+                <h3 class="card-title">Loyalty Reward</h3>
               </div>
-                <%= render 'form', loyalty_program: @loyalty_program %>
+                <div id="quickForm">
+                  <%= form_for([@t_mitra, @loyalty_program]) do |form| %>
+                    <% if @loyalty_program.errors.any? %>
+                      <div id="error_explanation">
+                        <ul>
+                        <% @loyalty_program.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Reward</label>
+                            <%= form.select(:reward_id, options_from_collection_for_select(@reward, 'id', 'reward_name', :selected => form.object.reward_id), { include_blank: true }, { class: 'browser-default custom-select', :class =>"form-control", :required => true, :autofocus => true}) %>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Point Loyalty</label>
+                            <%= form.number_field :point_loyalty, :class=>"form-control", required: true, min: "1" %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Date Start Loyalty</label><br>
+                            <%= form.date_field :start_loyalty, :class=>"form-control", required: true, :id =>"start" %>
+                          </div>
+                        </div>
+                        <div class="col-md-6"> 
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Date End Loyalty</label><br>
+                            <%= form.date_field :end_loyalty, :class=>"form-control", required: true, :id =>"end" %>
+                          </div>
+                        </div>  
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Status Loyalty</label>
+                            <%= form.select(:status_loyalty, options_for_select([
+                                        ["Actived", "Actived"],
+                                        ["Unactived", "Unactived"],
+                                        ], :selected => form.object.status_loyalty), {:include_blank => true}, {:class => "form-control", required:true} ) %>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Syarat Dan Kententuan</label>
+                            <%= form.text_area :keterangan_loyalty, :class=>"form-control", :style => "height:120px;" %>
+                          </div>
+                        </div>  
+                      </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <%= form.submit "Loyalty Reward", :class =>"btn-sm submit-btn" %>
+                    </div>
+                    <%end%>
+                  </div>
+
+<script>
+  var start = document.getElementById('start');
+  var end = document.getElementById('end');
+
+  start.addEventListener('change', function() {
+      if (start.value)
+          end.min = start.value;
+  }, false);
+  end.addEventLiseter('change', function() {
+      if (end.value)
+          start.max = end.value;
+  }, false);
+
+</script>
             </div>
             <!-- /.card -->
           </div>
