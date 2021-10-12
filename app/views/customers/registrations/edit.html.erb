@@ -79,11 +79,22 @@ input::placeholder {
                     <% end %>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <%#= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
-                      <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Phone Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
-                      <span class="form-label">Phone Customer</span>
+                    <div class="row">
+                      <div class="col-md-1">  
+                        <input class="form-control" style="width: 30px;" value="+62" type="text">
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
+                          <span class="form-label">Phone Customr</span>
+                        </div>
+                      </div>
                     </div>
+                    <!--<div class="form-group">
+                      <%#= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
+                      <%#= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
+                      <span class="form-label">Phone Customer</span>
+                    </div>-->
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
@@ -113,9 +124,16 @@ input::placeholder {
                     <% end %>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
-                      <span class="form-label">Phone Customer</span>
+                    <div class="row">
+                      <div class="col-md-1">  
+                        <input class="form-control" style="width: 30px;" value="+62" type="text">
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
+                          <span class="form-label">Phone Customr</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">

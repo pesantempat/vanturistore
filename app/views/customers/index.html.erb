@@ -46,7 +46,7 @@
                     <th style="min-width:100px; text-align:center;">Telephone</th>
                     <th style="text-align:center;">Brithday</th>
                     <th colspan="2" style="text-align:center;">Status Akun Login</th>
-                    <th></th>
+                    <th style="text-align: center; min-width: 80px;">Login Terakhir</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -71,7 +71,7 @@
                         <%end%></td>  
                       <!--<td><%#= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>-->
                       </td>
-                      <td></td>   
+                      <td style="text-align: center;"><%= customer.current_sign_in_at.strftime("%d/%m/%Y (%H:%M:%S)")%></td>   
                     </tr>
                   <%end%>
                   </tbody>

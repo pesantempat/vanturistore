@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
   <%= stylesheet_link_tag "logincustomer.css" %>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 </head>
 <div id="booking" class="section">
@@ -58,15 +61,22 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
-                      <span class="form-label">Phone Customer</span>
+                    <div class="row">
+                      <div class="col-md-1">  
+                        <input class="form-control" style="width: 30px;" value="+62" type="text">
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autofocus => true, :autocomplete =>"phone_customer" %>
+                          <span class="form-label">Phone Customer</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= f.date_field :brithday_customer, :class =>"form-control", default: Time.zone.now, :required => true %>
-                      <span class="form-label">Brithday</span>
+                      <span class="form-label">Tanggal Lahir</span>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -102,6 +112,25 @@
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--
+ <script>
+    var input = document.querySelector("#customer_phone_customer");
+    window.intlTelInput(input, {
+      formatOnInit: true,
+      separateDialCode: true,
+      hiddenInput: "full_phone",
+      initialCountry: "id",
+      geoIpLookup: function(callback) {
+        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "us";
+          callback(countryCode);
+        });
+      },
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" 
+    });
+ </script>
+-->
+
   <script>
     $('.form-control').each(function () {
       floatedLabel($(this));
