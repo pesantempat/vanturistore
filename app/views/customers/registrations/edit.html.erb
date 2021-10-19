@@ -85,7 +85,7 @@ input::placeholder {
                       </div>
                       <div class="col-md-10">
                         <div class="form-group">
-                          <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
+                          <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer", :maxlength =>"11" %>
                           <span class="form-label">Phone Customr</span>
                         </div>
                       </div>

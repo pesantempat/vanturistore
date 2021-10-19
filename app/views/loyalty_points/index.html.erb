@@ -1,4 +1,4 @@
-<%= render 'layouts/header'%>\
+<%= render 'layouts/header'%>
 <style>
   th {
     font-size: 14px;
@@ -9,16 +9,30 @@
     vertical-align: middle !important;
   }
 
+  .btn-success {
+    width: 100%;
+  }
+
   .btn-primary {
     color: #07a99c !important;
     background-color: #fff !important;
     border-color: #007bff;
   }
+
+  .btn-primary:hover {
+    background-color: #f0e9e9 !important;
+  }
+
+  .bg-info1 {
+    background-color: #07a99c !important;
+    color: #fff;
+    margin-bottom: 0px;
+}
+
+.widget-user .card-footer {
+    padding-top: 14px;
+}
 </style>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -28,10 +42,7 @@
         <div class="col-sm-6">
         </div><!-- /.col -->
         <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
-            <li class="breadcrumb-item active">Give Point</li>
-          </ol>
+          
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -41,95 +52,65 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <section class="content">
+              <%flash.each do |name, msg| %> 
+                    <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
+                        <%= notice %>
+                    </div>
+                <% end %>
+       <!-- /.row -->
         <div class="row">
-          <div class="col-12">
-            <%flash.each do |name, msg| %> 
-              <div class="alert alert-success alert-dismissable">
-                <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
-                <%= notice %>
+          <% @loyalty_points.each do |loyalty_point| %>
+            <% ptrans = LoyaltyPointTransaction.find_by(loyalty_point_id: loyalty_point.id, trans_type: "get-point") %>
+            <% reward_ptrans = LoyaltyPointTransaction.find_by(loyalty_point_id: loyalty_point.id, trans_type: "redeemed-point") %>
+            <% @t_mitra = loyalty_point.t_mitra %>
+          <div class="col-md-12">
+            <!-- Widget: user widget style 1 -->
+            <div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-info1">
+                <h3 class="widget-user-username" style="text-transform: capitalize;"><%= loyalty_point.customer.name_customer %></h3>
+                <h1><%= loyalty_point.point_customer %><span style="font-size: 24px;">point</span></h1>
               </div>
-            <% end %>
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Give Point</h3>
-                <%#= link_to 'Tambah Loyalty Program',new_t_mitra_loyalty_program_path, class:"btn-sm btn-primary float-right" %>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-12 ">
+                    <div class="description-block border-right" style="float: left; width: 52%;">
+                      <h5 class="description-header"><%= link_to "Give 1 point", customer_loyalty_point_loyalty_point_transactions_path(@customer.id, loyalty_point.id, :trans_type => "get-point"), class: "btn btn-primary btn-sm", :method => :post %><br><!--
+                          <%#= link_to " Input Point Request", new_customer_loyalty_point_loyalty_point_transaction_path(loyalty_point.customer.id, loyalty_point.id),class: "btn btn-info btn-sm", :style =>"margin-top:6px;" %>--></h5>
+                    </div>
+                    <!-- /.description-block -->
+                    <div class="description-block" style="float: right; width: 48%;">
+                      <h5 class="description-header"><%= link_to "Redeem Point", t_mitra_loyalty_programs_url(loyalty_point.t_mitra_id, customer_id: loyalty_point.customer_id),
+                      class: "btn btn-primary btn-sm" %></h5>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <%= link_to "History Point",  customer_loyalty_point_path(@customer,loyalty_point), class: "btn btn-success btn-sm" %>
+                  </div>  
+                </div>
+                <!--/row-->
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-              <div class="table-responsive">
-                  <table id="example" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                      <th style="min-width: 170px; text-align: center;">Nama Customer</th>
-                      <th style="text-align: center;">Point</th>
-                      <th style="text-align: center;">Give Point</th>
-                      <th style="text-align: center;">Rendeem Point</th>
-                      <th style="text-align: center;">History Point</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% @loyalty_points.each do |loyalty_point| %>
-                      <% ptrans = LoyaltyPointTransaction.find_by(loyalty_point_id: loyalty_point.id, trans_type: "get-point") %>
-                      <% reward_ptrans = LoyaltyPointTransaction.find_by(loyalty_point_id: loyalty_point.id, trans_type: "redeemed-point") %>
-                      <% @t_mitra = loyalty_point.t_mitra %>
-                      <tr>
-                        <td>
-                          <strong><%= loyalty_point.customer.name_customer %></strong>
-                        </td>
-                        <td style="text-align: center; font-weight: 700;"><%= loyalty_point.point_customer %></td>
-                        <td style="text-align: center;"><%= link_to "Give 1 point(s)", customer_loyalty_point_loyalty_point_transactions_path(@customer.id, loyalty_point.id, :trans_type => "get-point"), class: "btn btn-primary btn-sm", :method => :post %><br>
-                          <%= link_to " Input Point Request", new_customer_loyalty_point_loyalty_point_transaction_path(loyalty_point.customer.id, loyalty_point.id),class: "btn btn-success btn-sm", :style =>"margin-top:6px;" %>
-                        </td>
-                        <td>
-                          <%#= link_to "Redeem Point", t_mitra_loyalty_programs_url(loyalty_point.t_mitra_id), class: "btn btn-info" %>
-                          <%= link_to "Redeem Points for Customer", t_mitra_loyalty_programs_url(loyalty_point.t_mitra_id, customer_id: loyalty_point.customer_id),
-                      class: "btn btn-primary btn-sm" %>
-                        </td>
-                        <td>
-                          <%= link_to "History Point",  customer_loyalty_point_path(@customer,loyalty_point), class: "btn btn-success btn-sm" %>
-                        </td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-              </div><br>
-                <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
-              </div>
-              <!-- /.card-body -->
+
             </div>
+            <!-- /.widget-user -->
+            <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
           </div>
+
           <!-- /.col -->
+          <%end%>
+          
         </div>
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
+        <!-- /.row -->          
+ 
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-
-
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable( {
-    } );
-} );
-</script>
 
 <%= render 'layouts/footer'%>
-
-
-
-

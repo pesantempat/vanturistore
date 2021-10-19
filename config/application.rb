@@ -19,13 +19,16 @@ module AplikasiKpi
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "gmail.com",
-      authentication: "login",
-      enable_starttls_auto: true,
-      user_name: "cs.pesantempat@gmail.com",
-      password: "pesantempat2020"
-    }
+    address: "mail.bisniscepat.com",
+    port: 465,
+    domain: "bisniscepat.com",
+    authentication: :plain,
+    enable_starttls_auto: true,
+    user_name: "confirmation@bisniscepat.com",
+    password: "Latief12!",
+    openssl_verify_mode: "none",
+    ssl: true,
+    tls: true
+  }
   end
 end

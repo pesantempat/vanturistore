@@ -11,10 +11,10 @@ class LoyaltyProgramsController < ApplicationController
     if current_user.admin?
       @loyalty_programs = LoyaltyProgram.all
     else  
-    @loyalty_programs = LoyaltyProgram.where(t_mitra_id: params[:t_mitra_id]).order("created_at DESC").all
+    @loyalty_programs = LoyaltyProgram.where(t_mitra_id: params[:t_mitra_id]).order("point_loyalty ASC").all
     @t_mitras = current_user.t_mitras
     @t_mitra = TMitra.find(params[:t_mitra_id])
-    @loyalty_programs = @t_mitra.loyalty_programs.where(:status_loyalty => "Actived")
+    @loyalty_programs = @t_mitra.loyalty_programs.where(:status_loyalty => "Actived").order("point_loyalty ASC").all
     if params[:customer_id]
       @customer = Customer.find(params[:customer_id])
       @loyalty_point = LoyaltyPoint.find_by(customer_id: @customer.id, t_mitra_id: @t_mitra.id)
@@ -23,12 +23,12 @@ class LoyaltyProgramsController < ApplicationController
   end
 
   def redeemed
-    @loyalty_programs = LoyaltyProgram.where(t_mitra_id: params[:t_mitra_id]).order("created_at DESC").all
+    @loyalty_programs = LoyaltyProgram.where(t_mitra_id: params[:t_mitra_id]).order("point_loyalty ASC").all
     #@t_mitras = current_user.t_mitras
     @loyalty_points = LoyaltyPoint.all
     @t_mitras = TMitra.all
     @t_mitra = TMitra.find(params[:t_mitra_id])
-    @loyalty_programs = @t_mitra.loyalty_programs.where(:status_loyalty => "Actived")
+    @loyalty_programs = @t_mitra.loyalty_programs.where(:status_loyalty => "Actived").order("point_loyalty ASC").all
     if params[:customer_id]
       @customer = Customer.find(params[:customer_id])
       @loyalty_point = LoyaltyPoint.find_by(customer_id: @customer.id, t_mitra_id: @t_mitra.id)

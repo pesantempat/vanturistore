@@ -239,6 +239,24 @@
   }
 
 
+.widget-user .widget-user-username {
+    font-weight: 700 !important;
+}
+
+.widget-user .widget-user-desc {
+    margin-top: 10px !important;
+}
+h5, .h5 {
+    font-size: 1.06rem !important;
+}
+
+.bg-info1 {
+    background-color: #07a99c !important;
+    color: #fff;
+}
+
+
+
 
     /*----------------START RESPONSIVE DESIGN------------*/
 

@@ -8,10 +8,7 @@
         <div class="col-sm-6">
         </div><!-- /.col -->
         <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
-            <li class="breadcrumb-item active">Customer</li>
-          </ol>
+          
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -44,8 +41,8 @@
                     <th style="min-width:160px; text-align:center">Nama Customer</th>
                     <th style="text-align:center;">Email</th>
                     <th style="min-width:100px; text-align:center;">Telephone</th>
-                    <th style="text-align:center;">Brithday</th>
-                    <th colspan="2" style="text-align:center;">Status Akun Login</th>
+                    <th style="text-align:center;">Tanggal Lahir</th>
+                    <!--<th colspan="2" style="text-align:center;">Status Akun Login</th>-->
                     <th style="text-align: center; min-width: 80px;">Login Terakhir</th>
                   </tr>
                   </thead>
@@ -54,24 +51,41 @@
                     <tr>
                       <td><%= customer.name_customer %></td>
                       <td><%= customer.email %></td>
-                      <td><%= customer.phone_customer %></td>
-                      <td><%= customer.brithday_customer %></td>
-                      <td style="text-align: center;">
-                        <%= form_for(customer) do |f| %>
-                        <%= f.select(:deactivated_customer, options_for_select([
+                      <td>
+                        <% if customer.phone_customer.nil? %>
+                          -
+                        <%else%>
+                          <%= customer.phone_customer %></td>
+                        <%end%>
+                      <td>
+                        <% if customer.brithday_customer.nil? %>
+                          -
+                        <%else%>
+                          <%= customer.brithday_customer.strftime ("%d/%m/%Y") %>
+                        <%end%>  
+                      <!--<td style="text-align: center;">
+                        <%#= form_for(customer) do |f| %>
+                        <%#= f.select(:deactivated_customer, options_for_select([
                         ["True", "true"], 
                         ["False", "false"],   
                         ], :selected => f.object.deactivated_customer))%>
-                        <%= f.submit 'Change Activated', :data => { :confirm => "Are you sure change status?" }, class:"btn btn-info btn-sm", style: "margin-top:5px;" %></td><% end %>
+                        <%#= f.submit 'Change Activated', :data => { :confirm => "Are you sure change status?" }, class:"btn btn-info btn-sm", style: "margin-top:5px;" %></td><%#end%>
                       <td style="vertical-align: middle;">
-                        <% if customer.deactivated_customer == false %>
+                        <% #if customer.deactivated_customer == false %>
                             <button class="btn btn-success btn-sm"> Activated </button>
-                        <%else%>
+                        <%#else%>
                             <button class="btn btn-danger btn-sm"> Deactivated </button>
-                        <%end%></td>  
-                      <!--<td><%#= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>-->
-                      </td>
-                      <td style="text-align: center;"><%= customer.current_sign_in_at %></td>   
+                        <%#end%></td>  
+                      <td><%#= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %>
+                      </td>-->
+                      <td style="text-align: center;">
+                        <% if customer.current_sign_in_at.nil? %>
+                          -
+                        <%else%>
+                          <%= time_ago_in_words(customer.current_sign_in_at) %> ago
+                        <%end%>  
+                      </td> 
+                      <!--<td style="text-align: center;"><%#= customer.login_terakhir%> Hari yang lalu</td>-->   
                     </tr>
                   <%end%>
                   </tbody>
@@ -97,7 +111,7 @@
 <script>
   $(document).ready(function() {
     $('#example1').DataTable( {
-       "order": [[ 1, "desc" ]]
+       "order": [[ 0, "asc" ]]
     } );
 } );
 </script>

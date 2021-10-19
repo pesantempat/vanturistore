@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_165539) do
+ActiveRecord::Schema.define(version: 2021_10_17_175117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,10 +47,12 @@ ActiveRecord::Schema.define(version: 2021_10_03_165539) do
 
   create_table "loyalty_point_transactions", force: :cascade do |t|
     t.integer "point_customer_transaction"
-    t.string "trans_type", default: "credit"
+    t.string "trans_type", default: "get-point"
     t.bigint "loyalty_point_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reward_transaction"
+    t.datetime "reward_expired"
     t.index ["loyalty_point_id"], name: "index_loyalty_point_transactions_on_loyalty_point_id"
   end
 

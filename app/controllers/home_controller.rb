@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   def index
     @t_mitras = TMitra.all
     @t_mitras = current_user.t_mitras
-    @customers = Customer.all
+    @customers = Customer.order("name_customer asc").all
     #@loyalty_points = LoyaltyPoint.all
     #@customers = Customer.all
     #@loyalty_points = customer_url.loyalty_points

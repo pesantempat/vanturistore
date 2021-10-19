@@ -12,12 +12,43 @@
     color: #07a99c !important;
     background-color: #fff !important;
     border-color: #007bff;
+    width: 100%;
   }
+
+  .btn-primary:hover {
+    background-color: #f0e9e9 !important;
+  }
+
+  .widget-user .widget-point {
+    left: 34%;
+    position: absolute;
+    top: 107px;
+    font-size: 32px;
+}
+
+.point-circle {
+    border-radius: 9%;
+    display: block;
+    background-color:#fff;
+    color: #07a99c;
+    border: 1px solid #07a99c;
+    padding-right: 5px;
+    padding-left: 2px;
+
+}
+
+.bg-info1 {
+    background-color: #07a99c !important;
+    color: #fff;
+    margin-bottom: 0px;
+}
+
+.card {
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -26,12 +57,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
         </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<%=home_index_path%>">Home</a></li>
-            <li class="breadcrumb-item active">Redeemed Point</li>
-          </ol>
-        </div><!-- /.col -->
+        
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
@@ -40,94 +66,110 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <section class="content">
+      <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-12">
+          <div class="col-lg-12 col-12">
             <%flash.each do |name, msg| %> 
               <div class="alert alert-success alert-dismissable">
                 <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
                 <%= notice %>
               </div>
             <% end %>
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Redeemed Point</h3>
-                <h3 class="card-title" style="float: right;"> My Point:&nbsp;<%= @loyalty_point.point_customer%></h3>
+            <!-- small box -->
+            <div class="small-box bg-info1">
+              <div class="inner">
+                <h3><%= @loyalty_point.point_customer %>&nbsp;Point</h3>
+                 <p><%= @loyalty_point.customer.name_customer %>&nbsp;||&nbsp;<%= @loyalty_point.t_mitra.nama_mitra %></p>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-              <div class="table-responsive">
-                <table id="example" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th style="min-width: 200px; text-align: center;">Reward</th>
-                    <th style="text-align: center;">Point</th>
-                    <th style="text-align: center; ">End</th>
-                    <th style="text-align: center;">Expired</th>
-                    <th style="text-align: center; min-width: 160px;">Syarat & Ketentuan</th>
-                    <th style="text-align: center;">Rendeem Point</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                   <% @loyalty_programs.each do |loyalty_program| %>
-                  <tr>
-                    <td><%= loyalty_program.reward.reward_name %></td>
-                    <td style="text-align: center;"><%= loyalty_program.point_loyalty %></td>
-                    <td><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></td>
-                    <td><%= loyalty_program.date_expired%> Hari</td>
-                    <td><%= loyalty_program.keterangan_loyalty %></td>
-                    <% if loyalty_program.end_loyalty >= Date.today - 1.day %>
-                    <td> <% if @loyalty_point.point_customer >= loyalty_program.point_loyalty %>
-                          <%= link_to "Redeem points for this reward",
-                                      customer_loyalty_point_loyalty_point_transactions_path(current_customer.id, @loyalty_point.id, :trans_type => "redeemed-point", :loyalty_program_id => loyalty_program.id),
-                                      class: "btn btn-primary",
-                                      :method => :post %>            
-                        <% else %>
-                          <button type="button" class="btn btn-primary" disabled="disabled">Not enough points</button>
-                        <% end %>
-                    </td>
-                    <%else%>
-                    <td style="text-align: center;"><button type= "button" class="btn btn-primary" disabled="disabled">Expired</button></td> 
-                    <%end%>
-                   </tr>
-                <% end %>
-                  </tbody>
-                </table>
-              </div><br>
-                <%= link_to 'Back', :back, :class =>"btn-sm btn-danger" %>
+              <div class="icon">
+                <i class="ion ion-android-radio-button-on"></i>
               </div>
-              <!-- /.card-body -->
+              <a href="<%= customer_loyalty_point_url(current_customer.id, @loyalty_point.id)%>" class="small-box-footer">History Point<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="javascript:history.back()" class="small-box-footer"><i class="fas fa-arrow-circle-left"></i>Back</a>
             </div>
-            <!-- /.card -->
+          </div>
+        </div>
+      <!-- /.row -->
+        <div class="row">
+          <% @loyalty_programs.each do |loyalty_program| %>
+          <div class="col-md-4">
+            <!-- Widget: user widget style 1 -->
+            <div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-info1">
+                <h3 class="widget-user-username"><%= loyalty_program.reward.reward_name %></h3>
+              </div>
+              <div class="widget-point">
+                  <div class="point-circle"><%= loyalty_program.point_loyalty %><span style="font-size: 24px;">point</span></div>
+                </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-12 ">
+                    <div class="description-block border-right" style="float: left; width: 52%;">
+                      <h5 class="description-header"><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></h5>
+                      <span class="description-text">End Date</span>
+                    </div>
+                    <!-- /.description-block -->
+                    <div class="description-block" style="float: right; width: 48%;">
+                      <h5 class="description-header"><%= loyalty_program.date_expired%> Hari</h5>
+                      <span class="description-text">Expired</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <% if loyalty_program.end_loyalty >= Date.today - 1.day %>
+                        <% if @loyalty_point.point_customer >= loyalty_program.point_loyalty %>
+                              <%= link_to "Redeem points for this reward",
+                                          customer_loyalty_point_loyalty_point_transactions_path(current_customer.id, @loyalty_point.id, :trans_type => "redeemed-point", :loyalty_program_id => loyalty_program.id), class: "btn btn-primary", :method => :post %>            
+                        <% else %>
+                          <button type="button" class="btn btn-primary" disabled="disabled">Point tidak cukup</button>
+                        <% end %>
+                    <%else%>
+                        <button type= "button" class="btn btn-primary" disabled="disabled">Expired</button> 
+                    <%end%>    
+                  </div>  
+                </div>
+                <!--/row-->
+              </div>
+              <!--/card-footer-->       
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card card-primary collapsed-card">
+                      <div class="card-header">
+                        <h3 class="card-title">Syarat & Ketentuan</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                          </button>
+                        </div>
+                        <!-- /.card-tools -->
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <%= loyalty_program.keterangan_loyalty %>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.widget-user -->
           </div>
           <!-- /.col -->
+          <%end%>
         </div>
         <!-- /.row -->
-      </section>
-      <!-- /.content -->
+        <br>
+
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-
-
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable( {
-    } );
-} );
-</script>
 
 <%= render 'layouts/footercustomer'%>
 

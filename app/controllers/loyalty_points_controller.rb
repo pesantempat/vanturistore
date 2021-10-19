@@ -19,6 +19,12 @@ class LoyaltyPointsController < ApplicationController
   def mypoint
     @t_mitras = TMitra.all
     @loyalty_points = current_customer.loyalty_points
+    #@loyalty_programs = LoyaltyProgram.where(:status_loyalty => "Actived").order("created_at DESC").all
+    #if params[:customer_id]
+      #@customer = Customer.find(params[:customer_id])
+      #@loyalty_point = LoyaltyPoint.find_by(customer_id: @customer.id)
+    #end 
+      #@loyalty_point = LoyaltyPoint.find_by(customer_id: current_customer.id)
   end  
 
   # GET /loyalty_points/1 or /loyalty_points/1.json

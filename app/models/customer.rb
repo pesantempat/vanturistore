@@ -15,7 +15,11 @@ class Customer < ApplicationRecord
 
 	def destroy
 		update_attributes(deactivated_customer: true) unless deactivated_customer
-	end	
+	end
+
+	#def login_terakhir
+		#(Time.now.to_date - current_sign_in_at.to_date).to_i
+  	#end	
 
 	def active_for_authentication?
 		super && !deactivated_customer
