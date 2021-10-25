@@ -11,12 +11,12 @@ class CustomerPolicy
     end
 
     def show?
-        @current_user.admin? or @current_user.mitra?
-      end
+      @current_user.admin? or @current_user.mitra?
+    end
     
-      def edit?
-        @current_user.admin? or @current_user.mitra?
-      end
+    def edit?
+      @current_user.admin? or @current_user.mitra?
+    end
 
     def update?
         @current_user.admin? or @current_user.mitra?

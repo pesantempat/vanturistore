@@ -78,8 +78,12 @@
         </div>
       </div>
     </form>-->
+    <% if current_user.admin? or current_user.mitra? %>
       <a href="<%= edit_user_registration_path %>" class="nav-link" style="color:#07a99c; font-weight: 700;">Setting</a>
       <a href="<%=destroy_user_session_path%>" rel="nofollow" data-method="delete" class="nav-link" style="margin-left:-20px; color:#07a99c; font-weight: 700;">Log Out</a> 
+    <%else%>
+      <a href="<%=destroy_user_session_path%>" rel="nofollow" data-method="delete" class="nav-link" style="margin-left:-5px; color:#07a99c; font-weight: 700;">Log Out</a>
+    <%end%>  
   </nav>
   <!-- /.navbar -->
     <!-- Main Sidebar Container -->
@@ -178,13 +182,22 @@
             </a>
           </li>
 
-        <%else%>
+        <%elsif current_user.mitra?%>
 
           <li class="nav-item">
             <a href="<%=profilmitra_path%>" class="nav-link">
               <i class="nav-icon fas fa-address-card"></i>
               <p>
                  Profile
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<%= users_path %>" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                 Data Kasir
               </p>
             </a>
           </li>
@@ -214,6 +227,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="<%= home_index_path %>" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+                 Join Loyalty
+              </p>
+            </a>
+          </li>
+        <%elsif current_user.kasir?%>
+          
+           <li class="nav-item">
             <a href="<%= home_index_path %>" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
                  Join Loyalty

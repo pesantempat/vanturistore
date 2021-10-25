@@ -38,13 +38,22 @@
                         <%= notice %>
                     </div>
                 <% end %>
+            <% if current_user.admin? %>  
               <div class="card-header">
                 <h3 class="card-title">MITRA</h3>
                 <%#= link_to 'Tambah Mitra Baru', new_user_path, class:"btn-sm btn-primary float-right" %>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
+            <%else current_user.mitra? %>
+              <div class="card-header">
+                <h3 class="card-title">KASIR</h3>
+                <%= link_to 'Tambah Kasir', new_user_path, class:"btn-sm btn-primary float-right" %>
+              </div>
+            <%end%>
+
+            <!-- /.card-header -->
+            <div class="card-body">
               <div class="table-responsive">
+                <% if current_user.admin? %>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -53,7 +62,8 @@
                     <th>Status</th>
                     <th></th>
                     <th style="min-width:145px;"></th>
-                    <th>Status Login</th> 
+                    <th>Status Login</th>
+                    <th>Login Terakhir</th> 
                     <th></th> 
                     <th></th>
                   </tr>
@@ -67,13 +77,20 @@
                       <td style="text-align: center;"><%= form_for(user) do |f| %>
                       <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
                       <%= f.submit 'Change Role', :data => { :confirm => "Are you sure change status?" }, class:"btn btn-info btn-sm" %></td>
+                      <% end %>
                       <td style="text-align:center;"><% if user.t_mitras.empty? %>
                             <%= link_to 'Input Data Mitra Baru', user, :class =>"btn-sm btn-success" %></td>
                           <%else%>
                             <%= link_to 'Detail Data Mitra', user, :class =>"btn-sm btn-warning" %></td>
                           <%end%>
-                      <% end %>
                       <td><%=user.deactivated%></td>
+                      <td style="text-align: center;">
+                        <% if user.current_sign_in_at.nil? %>
+                          -
+                        <%else%>
+                          <%= time_ago_in_words(user.current_sign_in_at) %> ago
+                        <%end%>  
+                      </td> 
                       <td><% if user.deactivated %>
                           <%= link_to("Deactivated", user_path(user), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-danger btn-sm") unless user == current_user %>
                           <% else %>
@@ -85,9 +102,51 @@
                   <% end %>
                   </tbody>
                 </table>
+                <%else current_user.mitra? %>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Login Terakhir</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td><%= user.name %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.role %></td>
+                      <td style="text-align: center;">
+                        <% if user.current_sign_in_at.nil? %>
+                          -
+                        <%else%>
+                          <%= time_ago_in_words(user.current_sign_in_at) %> ago
+                        <%end%>  
+                      </td> 
+                      <!--<td style="text-align:center;"><% if user.t_mitras.empty? %>
+                            <%= link_to 'Input Data Mitra Baru', user, :class =>"btn-sm btn-success" %></td>
+                          <%else%>
+                            <%= link_to 'Detail Data Mitra', user, :class =>"btn-sm btn-warning" %></td>
+                          <%end%>
+                      <td><%=user.deactivated%></td>
+                      <td><% if user.deactivated %>
+                          <%= link_to("Deactivated", user_path(user), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-danger btn-sm") unless user == current_user %>
+                          <% else %>
+                          <%= link_to("Deactivated", user_path(user), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-success btn-sm") unless user == current_user %>
+                          <%end%>
+                      </td>-->
+                      <td><%= link_to 'Edit', edit_user_path(user), :class =>"btn-sm btn-success" %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+                <%end%>
               </div>
-              </div>
-              <!-- /.card-body -->
+            </div>
+            <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>

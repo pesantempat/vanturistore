@@ -26,7 +26,7 @@ before_action :authenticate_user!, only: [:new]
             @loyalty_point.point_customer += ptrans.point_customer_transaction
             ptrans.save
             @loyalty_point.save
-            flash[:notice] = "#{ptrans.point_customer_transaction} point telah diberikan"
+            flash[:notice] = "#{ptrans.point_customer_transaction} point telah diberikan dan email notifikasi telah terkirim ke customer"
             redirect_to customer_loyalty_points_path(@customer.id)
             LoyaltyPointTransactionMailer.get_point(@loyalty_point, ptrans).deliver_later!(wait: 1.second) 
       elsif params[:trans_type] == "redeemed-point"
@@ -45,7 +45,7 @@ before_action :authenticate_user!, only: [:new]
             loyalty_point.point_customer += point_customer_transaction
             if ptrans.save && loyalty_point.save
               if current_user
-                flash[:notice] = "Redeemed #{-point_customer_transaction} point berhasil"
+                flash[:notice] = "Redeemed #{-point_customer_transaction} point berhasil, Email notifikasi telah terkirim ke customer"
               else current_customer
                 flash[:notice] = "Redeemed #{-point_customer_transaction} point berhasil, silahkan cek email anda"
               end 
@@ -81,7 +81,7 @@ before_action :authenticate_user!, only: [:new]
 
   def loyalty_point_transaction_params
     if params[:loyalty_point_transaction]
-      params.require(:loyalty_point_transaction).permit(:point_customer_transaction, :trans_type, :reward_transaction)
+      params.require(:loyalty_point_transaction).permit(:point_customer_transaction, :trans_type, :reward_transaction, :reward_expired)
     end
   end
 end

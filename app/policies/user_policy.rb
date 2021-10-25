@@ -7,27 +7,27 @@ class UserPolicy
   end
 
   def index?
-    @current_user.admin? or @current_mitra
+    @current_user.admin? or @current_mitra or @current_user.mitra?
   end
 
   def show?
-    @current_user.admin? or @current_mitra == @user
+    @current_user.admin? 
   end
 
   def new?
-    @current_user.admin?
+    @current_user.admin? or @current_user.mitra?
   end
 
   def create?
-    @current_user.admin?
+    @current_user.admin? or @current_user.mitra?
   end
 
   def edit?
-    @current_user.admin?
+    @current_user.admin? or @current_user.mitra?
   end
 
   def update?
-    @current_user.admin?
+    @current_user.admin? or @current_user.mitra?
   end
 
   def destroy?

@@ -7,7 +7,7 @@ class LoyaltyProgramPolicy
   end
 
   def index?
-    @current_user.admin? or @current_user.mitra?
+    @current_user.admin? or @current_user.mitra? or @current_user.kasir?
   end
 
   def my_reward?
