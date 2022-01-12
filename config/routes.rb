@@ -16,6 +16,10 @@ root :to => 'home#landingpage'
   get 'homecustomer' => 'home#index2'
 
   get 'kebijakanprivasi' => 'home#kebijakanprivasi'
+
+  post 'verifications' => 'verifications#create'
+
+  patch 'verifications' => 'verifications#verify'
  
  #devise_scope :user do
     #root :to => 'users/sessions#new'
@@ -33,8 +37,8 @@ root :to => 'home#landingpage'
   #registrations
   put    '/account-admin-bisniscepat',  to: 'users/registrations#update'
   delete '/account-admin-bisniscepat',  to: 'users/registrations#destroy'
-  #post   '/account-admin-bisniscepat',  to: 'users/registrations#create'
-  #get    '/register', to: 'users/registrations#new',    as: :new_user_registration
+  post   '/account-admin-bisniscepat',  to: 'users/registrations#create'
+  get    '/register', to: 'users/registrations#new',    as: :new_user_registration
   get    '/account-admin-bisniscepat',  to: 'users/registrations#edit',   as: :edit_user_registration
   patch  '/account-admin-bisniscepat',  to: 'users/registrations#update', as: :user_registration
   get    '/account-admin-bisniscepat/cancel', to: 'users/registrations#cancel', as: :cancel_user_registration# passwords 

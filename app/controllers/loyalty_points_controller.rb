@@ -49,7 +49,8 @@ class LoyaltyPointsController < ApplicationController
 
   # POST /loyalty_points or /loyalty_points.json
   def create
-     if customer_representing_self?(params)
+  if current_customer.is_verified == true  
+    if customer_representing_self?(params)
       begin
         @loyalty_point = LoyaltyPoint.new(point_customer: 0, customer_id: params[:customer_id], t_mitra_id: params[:t_mitra_id])
         @loyalty_point.save
@@ -67,9 +68,12 @@ class LoyaltyPointsController < ApplicationController
           redirect_to customer_mypoint_path(current_customer)
         end  
       end
-      else
+    else
       redirect_to root_path
     end
+  else
+    redirect_to edit_customer_registration_path, :notice => 'Silahkan verifikasi terlebih dahulu no telepon anda untuk join program loyalty.' 
+  end   
   end
 
 

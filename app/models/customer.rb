@@ -5,6 +5,9 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :confirmable, :validatable, :omniauthable, :omniauth_providers => [:facebook]	
+		 
+  validates_uniqueness_of :phone_customer
+  #validates :phone_number, phone: { possible: false, allow_blank: true, types: [:mobile] }
 
   enum role: [:customer]
 	after_initialize :set_default_role, :if => :new_record?
@@ -43,6 +46,16 @@ class Customer < ApplicationRecord
 		  customer.image = auth.info.image # assuming the user model has an image
 		  customer.confirmed_at = Time.zone.now
 		end
+	  end
+
+	  def needs_phone_customer_verifying?
+		if is_verified
+		  return false
+		end
+		if phone_customer.blank?
+		  return false
+		end
+		return true
 	  end
 
   

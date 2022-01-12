@@ -39,6 +39,8 @@ gem 'omniauth-facebook'
 
 gem 'omniauth-rails_csrf_protection'
 
+gem 'two_factor_authentication'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
