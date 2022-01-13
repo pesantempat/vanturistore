@@ -37,7 +37,7 @@ root :to => 'home#landingpage'
   #registrations
   put    '/account-admin-bisniscepat',  to: 'users/registrations#update'
   delete '/account-admin-bisniscepat',  to: 'users/registrations#destroy'
-  #post   '/account-admin-bisniscepat',  to: 'users/registrations#create'
+  post   '/account-admin-bisniscepat',  to: 'users/registrations#create'
   #get    '/register', to: 'users/registrations#new',    as: :new_user_registration
   get    '/account-admin-bisniscepat',  to: 'users/registrations#edit',   as: :edit_user_registration
   patch  '/account-admin-bisniscepat',  to: 'users/registrations#update', as: :user_registration
