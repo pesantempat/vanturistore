@@ -49,7 +49,7 @@ class LoyaltyPointsController < ApplicationController
 
   # POST /loyalty_points or /loyalty_points.json
   def create
-  if current_customer.is_verified == true  
+  #if current_customer.is_verified == true  
     if customer_representing_self?(params)
       begin
         @loyalty_point = LoyaltyPoint.new(point_customer: 0, customer_id: params[:customer_id], t_mitra_id: params[:t_mitra_id])
@@ -59,7 +59,7 @@ class LoyaltyPointsController < ApplicationController
           redirect_to customer_loyalty_points_url(current_customer)
         else current_customer
           redirect_to customer_mypoint_path(current_customer) 
-        end   
+        end  
       rescue ActiveRecord::RecordNotUnique => e
         flash[:alert] = "Already join"
         if current_user
@@ -71,9 +71,9 @@ class LoyaltyPointsController < ApplicationController
     else
       redirect_to root_path
     end
-  else
-    redirect_to edit_customer_registration_path, :notice => 'Silahkan verifikasi terlebih dahulu no telepon anda untuk join program loyalty.' 
-  end   
+  #else
+    #redirect_to edit_customer_registration_path, :notice => 'Silahkan verifikasi terlebih dahulu no telepon anda untuk join program loyalty.' 
+  #end   
   end
 
 

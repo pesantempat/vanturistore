@@ -55,17 +55,12 @@ input::placeholder {
         <div class="row">
           <div class="col-md-12">
             <div class="booking-cta">
-              <% if current_customer.is_verified == true %>
-                <h2>Edit <%= resource_name.to_s.humanize %></h2>
-              <%else%>
-                <h2> Verifikasi No Telepon </h2>
-              <%end%>    
+              <h2>Edit <%= resource_name.to_s.humanize %></h2>
             </div>
           </div>  
           <div class="col-md-12 col-md-offset-1"> 
             <div class="booking-form">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                <% if current_customer.is_verified == true %>
                   <% if current_customer.provider == "facebook"%>
                   <div class="row">
                     <div class="col-md-6">
@@ -173,28 +168,8 @@ input::placeholder {
                     <div class="form-btn">
                       <%= f.submit "Update", :class =>"submit-btn" %>
                     </div>
-                  <%end%> <!-- end provider facebook -->  
-                <%else%><!-- else is verified -->
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="col-md-12">
-                        <div class="row">
-                          <div class="col-md-1">  
-                            <input class="form-control" style="width: 30px;" value="+62" type="text">
-                          </div>
-                          <div class="col-md-11">
-                            <div class="form-group">
-                              <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer", :maxlength =>"11", :disabled =>"true" %>
-                              <span class="form-label">Phone Customer</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>     
-                <%end%> <!-- end is verified -->   
+                  <%end%> <!-- end provider facebook -->    
               <%end%> <!-- end form -->
-              <% if current_customer.is_verified == true %>
               <div class="row" style ="margin-top: 10px;">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -208,15 +183,7 @@ input::placeholder {
                       <br><%= link_to "Back", :back, :style => "color:#07a99c"%>
                     </div>
                   </div>
-              </div>
-              <%else%>
-                <div class="form-btn">
-                  <%= mobile_verification_button %>
-                </div><br>
-                <%= verify_mobile_number_form %>  
-                  <%= link_to "Back", homecustomer_path, :style => "color:#07a99c"%>
-                  <p>KODE OTP ANDA <span style="font-weight:700"><%= @customer.verification_code %></span></p>
-              <%end%>          
+              </div> 
             </div>  
           </div>
         </div>

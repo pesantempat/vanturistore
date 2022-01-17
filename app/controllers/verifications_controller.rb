@@ -1,6 +1,7 @@
 class VerificationsController < ApplicationController
     def create
         current_customer.verification_code =  1_000_00 + rand(10_000_00 - 1_000_00)
+        #current_customer.phone_customer = current_customer.phone_customer
         current_customer.save
       
         to = current_customer.phone_customer
