@@ -69,12 +69,6 @@
       <!-- /.row -->
         <div class="row">
           <div class="col-12">
-            <%flash.each do |name, msg| %> 
-              <div class="alert alert-success alert-dismissable">
-                <a href="#" class="close" data-dismiss = "alert" aria-label="close">x</a>
-                <%= notice %>
-              </div>
-            <% end %>
             <div class="card">
               <div class="card-header">
                 <h4 style="text-align: center;">History Loyalty Point</h4>
@@ -85,24 +79,55 @@
                 <table id="example" class="table table-bordered table-striped">
                   <thead>
                     <tr>
+                      <th style="min-width: 20px; text-align: center;">Id</th>
                       <th style="min-width: 10px; text-align: center;">Point</th>
-                      <th style="min-width: 10px;text-align: center;">Update at</th>
-                      <th style="text-align: center;">Transaksi Type</th>
-                      <th style="text-align: center;">Batas Penukaran Reward</th>
+                      <th style="min-width: 10px;text-align: center;">Date</th>
+                      <th style="min-width: 220px; text-align: center;">Transaksi Type</th>
+                      <th style="text-align: center;">Batas Penukaran</th>
+                      <!--<th style="text-align: center;">Status Ditukar</th>
+                      <%if user_signed_in?%>
+                      <th style="text-align: center;"></th>
+                      <%else customer_signed_in?%>
+                      <%end%>-->
                     </tr>
                   </thead>
                   <tbody>
                   <% @approved.each do |trans| %>
         				    <tr>
+                      <td style="text-align: center;">
+                        <%if trans.trans_type == "redeemed-point" %>
+                          BC<%= trans.created_at.strftime("%^b") %><%= trans.created_at.strftime("%y")%><%= trans.id %>
+                        <%else%>
+                        <%end%>
+                      </td>
         				      <td style="text-align: center;"><%= trans.point_customer_transaction %></td>
-        				      <td><%= trans.updated_at.strftime("%d/%m/%Y (%H:%M:%S)") %></td>
-        				      <td><%if trans.trans_type == "redeemed-point"%>
-                            <%= trans.trans_type %> <span style="font-weight: 700; font-style: italic;">(Untuk&nbsp;<%= trans.reward_transaction%>)</span>
-                          <%else%>
-                            <%= trans.trans_type %>
-                          <%end%> 
+        				      <td><%= trans.created_at.strftime("%d/%m/%Y (%H:%M:%S)") %></td>
+        				      <td>
+                        <%if trans.trans_type == "redeemed-point"%>
+                          <%= trans.trans_type %> <span style="font-weight: 700; font-style: italic;">(Untuk&nbsp;<%= trans.reward_transaction%>)</span>
+                        <%else%>
+                          <%= trans.trans_type %>
+                        <%end%> 
                       </td>     
                       <td style="text-align: center;"><%= trans.reward_expired.strftime ("%d/%m/%Y") unless trans.reward_expired.nil? %></td>
+                      <!--<td style="text-align: center; text-transform: capitalize; font-weight: 700"><%=trans.status_transaksi%></td>
+                      <% if user_signed_in?%> 
+                        <td style="text-align: center;">
+                          <%#= link_to 'Edit status',   edit_customer_loyalty_point_loyalty_point_transaction_path(@loyalty_point.customer, @loyalty_point, trans), :class =>"btn-sm btn-success" %>
+                          <%if trans.trans_type == "redeemed-point" %>
+                            <%= form_for([@customer, @loyalty_point, trans]) do |f| %>
+                              <%#= f.select(:status_transaksi, LoyaltyPointTransaction.status_transaksis.keys.map {|status_transaksi| [status_transaksi.titleize,status_transaksi]}) %>
+                              <%= f.select(:status_transaksi, options_for_select([
+                              ["Belum", "belum"], 
+                              ["Sudah", "sudah"],   
+                              ], :selected => f.object.status_transaksi), {:include_blank => false}, {:style =>"width: 87px; height:25px; margin-bottom:2px; text-align:center;"} ) %>
+                              <%= f.submit 'Ubah Status', :data => { :confirm => "Anda yakin ingin merubah status?" }, class: "btn btn-primary btn-sm" %>
+                            <% end %>
+                          <%else%>
+                          <%end%>  
+                        </td>
+                      <%else customer_signed_in?%>
+                      <%end%>-->
         				    </tr>
       				    <% end %>
                   </tbody>
@@ -137,7 +162,8 @@
 <script>
   $(document).ready(function() {
     $('#example').DataTable( {
-       "order": [[ 1, "desc" ]]
+      columnDefs: [ { type: 'date', 'targets': [2] } ],
+      "order": [[ 2, "asc" ]]
     } );
 } );
 </script>

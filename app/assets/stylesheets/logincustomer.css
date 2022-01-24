@@ -1,3 +1,8 @@
+body {
+	background-image: url('/assets/bg-04.png');
+	background-size: cover;
+	background-position: center;
+}
 .section {
 	position: relative;
 	height: 100vh;
@@ -23,12 +28,9 @@
 
 #booking {
 	font-family: 'Montserrat', sans-serif;
-	background-image: url('/assets/bg-03.jpg');
-	background-size: cover;
-	background-position: center;
 }
 
-#booking::before {
+/*#booking::before {
 	content: '';
 	position: absolute;
 	left: 0;
@@ -36,7 +38,7 @@
 	bottom: 0;
 	top: 0;
 	background: rgba(255, 255, 255, 0.8);
-}
+}*/
 
 .booking-cta {
     margin: 0 auto;

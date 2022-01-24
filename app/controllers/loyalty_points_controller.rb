@@ -33,16 +33,18 @@ class LoyaltyPointsController < ApplicationController
       @loyalty_points = LoyaltyPoint.all
       @t_mitras = TMitra.all
       if customer_representing_self?(params) && customer_on_loyalty_point?(params)
-        ptranss = @loyalty_point.loyalty_point_transactions
+        ptranss = @loyalty_point.loyalty_point_transactions.order("created_at desc")
         @approved = ptranss
       else
         redirect_to homecustomer_path
       end
     else user_signed_in?
+      #@loyalty_point_transaction = LoyaltyPointTransaction.new
       @loyalty_point = LoyaltyPoint.find(params[:id])
+      @loyalty_point_transactions = LoyaltyPointTransaction.all
       @customer = Customer.find(params[:customer_id].to_i)
       @t_mitras = current_user.t_mitras
-      ptranss = @loyalty_point.loyalty_point_transactions
+      ptranss = @loyalty_point.loyalty_point_transactions.order("created_at desc").all
       @approved = ptranss
     end  
   end
@@ -75,6 +77,7 @@ class LoyaltyPointsController < ApplicationController
     #redirect_to edit_customer_registration_path, :notice => 'Silahkan verifikasi terlebih dahulu no telepon anda untuk join program loyalty.' 
   #end   
   end
+
 
 
   # DELETE /loyalty_points/1 or /loyalty_points/1.json

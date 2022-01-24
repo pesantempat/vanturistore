@@ -14,14 +14,11 @@
 
   <%= stylesheet_link_tag "logincustomer.css" %>
 <style>
-  .section .section-center {
-	position: absolute;
-	top: 50% !important;
-	left: 0;
-	right: 0;
-	-webkit-transform: translateY(-50%) !important;
-	transform: translateY(-50%) !important;
-}
+
+  span {
+    position: absolute;
+    left: 48%;
+  }
 </style>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -34,29 +31,93 @@
 </head>
 
 <body>
-    <div id="booking" class="section">
-        <div class="section-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-1">
-                        <div class="booking-cta">
-                            <h2 style="text-align: center;">Bisniscepat.com</h2>
-                            <p style="text-align: center;">Earn Rewards at Cafe/Restaurant</p>
-                            <% unless current_customer %> 
-                            <div class="booking-form" style="background: transparent; box-shadow: none; margin-top:-40px;">
-                                <button class="submit-btn"><a href="<%=new_customer_registration_path%>" style="color: #fff;">Join Our Program</a></button>
-                            <%else%>
-                            <div class="booking-form" style="background: transparent; box-shadow: none; margin-top:-40px;">
-                                <button class="submit-btn"><a href="<%=homecustomer_path%>" style="color: #fff;">Go To Home</a></button>
-
-                            <%end%>    
-                        </div>
-                        </div>
-                    </div>
-                </div>
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+        
+          <div class="col-md-12 col-md-offset-1">
+            <div class="booking-cta">
+              <h2 style="text-align: center;">Bisniscepat.com</h2>
+              <p style="text-align: center;">Earn Rewards at Cafe/Restaurant</p>
             </div>
-        </div>    
-    </div>
+          </div>
+
+          <div class="col-md-12 col-md-offset-1">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-users"></i></span><br>
+                  <h6 style="text-align:center; font-weight:600;">Join Loyalty Program The Iron Bee</h6>
+                  <p style="font-size:14px;text-align:center;">Get 1 Point</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-cart-arrow-down"></i></span><br>
+                  <h6 style="text-align:center;font-weight:600;">Setiap Pembelian 125 Ribu</h6>
+                  <p style="font-size:14px;text-align:center;">Get 2 point</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-birthday-cake"></i></span><br>
+                  <h6 style="text-align:center;font-weight:600;">Merayakan Hari Ulang tahun</h6>
+                  <p style="font-size:14px;text-align:center;">Get 5 point</p>
+                </div>
+              </div>  
+            </div>    
+          </div>
+
+          <div class="col-md-12 col-md-offset-1"><br>
+            <div class="booking-cta">
+              <% unless current_customer %> 
+              <div class="booking-form" style="background: transparent; box-shadow: none; margin-top:-40px;">
+              <button class="submit-btn"><a href="<%=new_customer_registration_path%>" style="color: #fff;">Join Our Program</a></button></div>
+              <%else%>
+              <div class="booking-form" style="background: transparent; box-shadow: none; margin-top:-40px;">
+              <button class="submit-btn"><a href="<%=homecustomer_path%>" style="color: #fff;">Go To Home</a></button></div>
+              <%end%>    
+            </div>
+          </div>
+
+          <div class="col-md-12 col-md-offset-1">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-gift"></i></span><br>
+                  <h6 style="text-align:center;font-weight:600;">Potongan Diskon 25 Ribu</h6>
+                  <p style="font-size:14px;text-align:center;">5 point</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-gift"></i></span><br>
+                  <h6 style="text-align:center;font-weight:600;">Potongan Diskon 75 Ribu</h6>
+                  <p style="font-size:14px;text-align:center;">10 point</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-gift"></i></span><br>
+                  <h6 style="text-align:center;font-weight:600;">Potongan Diskon 125 Ribu</h6>
+                  <p style="font-size:14px;text-align:center;">15 point</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="booking-cta">
+                  <span><i class="nav-icon fas fa-gift"></i></span><br>
+                  <h6 style="text-align:center;font-weight:600;">Potongan Diskon 175 Ribu</h6>
+                  <p style="font-size:14px;text-align:center;">20 point</p>
+                </div>
+              </div>  
+            </div>    
+          </div>
+
+        </div>
+      </div>
+    </div>    
+  </div>
 
   <script src="js/jquery.min.js"></script>
   <script>

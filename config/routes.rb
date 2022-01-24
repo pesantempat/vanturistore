@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-  #resources :loyalty_point_transactions
+  #resources :loyalty_point_transactions, only: [:update, :edit]
   #resources :loyalty_points
   resources :loyalty_programs, only: [:index], :path => 'loyalty-reward'
   resources :rewards
@@ -93,5 +93,5 @@ end
       resources :loyalty_point_transactions, :path => 'point-transaction'
     end
   end
-
+  
 end
