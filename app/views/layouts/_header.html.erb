@@ -91,7 +91,7 @@
     <!-- Brand Logo -->
     <a href="<%=home_index_path%>" class="brand-link">
       <%= image_tag 'AdminLTELogo.png', :class =>"brand-image img-circle elevation-3", :style =>"opacity: .8" %>     
-      <span class="brand-text font-weight-light">bisniscepat.com</span>
+      <span class="brand-text font-weight-light">The Iron Bee</span>
     </a>
 
     <!-- Sidebar -->
@@ -100,14 +100,14 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <% if current_user.admin? %>
         <div class="image">
-          <%= image_tag 'avatar2.png', :class =>"img-circle elevation-2"%>
+          <%= image_tag 'avatar2.jpg', :class =>"img-circle elevation-2"%>
         </div>
         <div class="info">
           <a href="<%=home_index_path%>" class="d-block">Admin</a>
         </div>
       <%else%>  
         <div class="image">
-          <%= image_tag 'favicon.ico', :class =>"img-circle elevation-2"%>
+          <%= image_tag 'logo.jpg', :class =>"img-circle elevation-2"%>
         </div>
         <div class="info">
           <a href="<%=home_index_path%>" class="d-block"><%= current_user.name %></a>
