@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         if current_user.admin?
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
         else current_user.mitra?
-        format.html { redirect_to users_path, notice: 'Kasir berhasil dibuat silahkan cek email kasir untuk konfirmasi email agar bisa login' }
+        format.html { redirect_to users_path, notice: 'Kasir berhasil dibuat' }
         end  
         format.json { render :show, status: :created, location: @user }
       else
