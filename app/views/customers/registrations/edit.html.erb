@@ -66,7 +66,7 @@ input::placeholder {
                     <div class="col-md-6">
                       <div class="form-group">
                         <%= f.text_field :name_customer, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"name_customer" %>
-                        <span class="form-label">Name Customer</span>
+                        <span class="form-label">Nama Customer</span>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -86,7 +86,7 @@ input::placeholder {
                         <div class="col-md-10">
                           <div class="form-group">
                             <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer", :maxlength =>"11" %>
-                            <span class="form-label">Phone Customer</span>
+                            <span class="form-label">Nomor Handphone</span>
                           </div>
                         </div>
                       </div>
@@ -99,7 +99,7 @@ input::placeholder {
                     <div class="col-md-6">
                       <div class="form-group">
                         <%= f.date_field :brithday_customer, :class =>"form-control", default: Time.zone.now, :required => true %>
-                        <span class="form-label">Brithday</span>
+                        <span class="form-label">Tanggal Lahir</span>
                       </div>
                     </div>
                   </div>  
@@ -111,7 +111,7 @@ input::placeholder {
                       <div class="col-md-6">
                         <div class="form-group">
                           <%= f.text_field :name_customer, :class =>"form-control", :required => true, :autofocus => true, :autocomplete =>"name_customer" %>
-                          <span class="form-label">Name Customer</span>
+                          <span class="form-label">Nama Customer</span>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -131,7 +131,7 @@ input::placeholder {
                           <div class="col-md-10">
                             <div class="form-group">
                               <%= f.text_field :phone_customer, :class =>"form-control", pattern:"[0-9]+", oninvalid:"this.setCustomValidity('Inputan Harus Angka')", oninput:"setCustomValidity('')", :required => true, :autocomplete =>"customer_phone_customer" %>
-                              <span class="form-label">Phone Customer</span>
+                              <span class="form-label">Nomor Handphone</span>
                             </div>
                           </div>
                         </div>
@@ -139,7 +139,7 @@ input::placeholder {
                       <div class="col-md-6">
                         <div class="form-group">
                           <%= f.date_field :brithday_customer, :class =>"form-control", default: Time.zone.now, :required => true %>
-                          <span class="form-label">Brithday</span>
+                          <span class="form-label">Tanggal Lahir</span>
                         </div>
                       </div>
                       <div class="col-md-6">
