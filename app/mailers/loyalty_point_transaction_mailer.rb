@@ -1,6 +1,6 @@
 class LoyaltyPointTransactionMailer < ApplicationMailer
 
-	default from: "Bisniscepat <confirmation@bisniscepat.com>"
+	default from: "The IronBee <confirmation@bisniscepat.com>"
 
   def get_point (loyalty_point, loyalty_point_transaction)
     #@loyalty_point_transaction = loyalty_point_transaction
