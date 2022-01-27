@@ -31,17 +31,17 @@ root :to => 'home#landingpage'
 
  devise_scope :user do
   #sessions
-  get    'login-admin-bisniscepat',  to: 'users/sessions#new',     as: :new_user_session
-  post   'login-admin-bisniscepat',  to: 'users/sessions#create',  as: :user_session
+  get    'login-admin',  to: 'users/sessions#new',     as: :new_user_session
+  post   'login-admin',  to: 'users/sessions#create',  as: :user_session
   delete 'logout', to: 'users/sessions#destroy', as: :destroy_user_session
   #registrations
-  put    '/account-admin-bisniscepat',  to: 'users/registrations#update'
-  delete '/account-admin-bisniscepat',  to: 'users/registrations#destroy'
-  #post   '/account-admin-bisniscepat',  to: 'users/registrations#create'
+  put    '/account-admin',  to: 'users/registrations#update'
+  delete '/account-admin',  to: 'users/registrations#destroy'
+  #post   '/account-admin',  to: 'users/registrations#create'
   #get    '/register', to: 'users/registrations#new',    as: :new_user_registration
-  get    '/account-admin-bisniscepat',  to: 'users/registrations#edit',   as: :edit_user_registration
-  patch  '/account-admin-bisniscepat',  to: 'users/registrations#update', as: :user_registration
-  get    '/account-admin-bisniscepat/cancel', to: 'users/registrations#cancel', as: :cancel_user_registration# passwords 
+  get    '/account-admin',  to: 'users/registrations#edit',   as: :edit_user_registration
+  patch  '/account-admin',  to: 'users/registrations#update', as: :user_registration
+  get    '/account-admin/cancel', to: 'users/registrations#cancel', as: :cancel_user_registration# passwords 
   # passwords
   #get   'new-pass',  to: 'devise/passwords#new',    as: :new_user_password
   #get   'edit-pass', to: 'devise/passwords#edit',   as: :edit_user_password

@@ -3,7 +3,6 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Redeemed Point</h1>
     <p>Selamat anda berhasil redeemed point untuk reward <span style="font-style: italic; font-weight: 700">"<%= @loyalty_point_transaction.reward_transaction%>"</span>, Dengan Id <span style="font-weight: 700">BC<%= @loyalty_point_transaction.created_at.strftime("%^b") %><%= @loyalty_point_transaction.created_at.strftime("%y")%><%= @loyalty_point_transaction.id %></span>, Berlaku Sampai Tanggal <%= @loyalty_point_transaction.reward_expired.strftime ("%d/%m/%Y")%>.<br> Silahkan datang ke tempat kami dan tunjukan email ini untuk mendapatkan reward yang anda tukarkan dengan poin anda.</p> 
     <p>point anda berkurang <%= @loyalty_point_transaction.point_customer_transaction %> point.</p>
     <p>Sisa point anda sekarang <%= @loyalty_point_transaction.loyalty_point.point_customer%> point </p>
