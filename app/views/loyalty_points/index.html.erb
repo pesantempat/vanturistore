@@ -84,8 +84,8 @@
                 <div class="row">
                   <div class="col-sm-12 ">
                     <div class="description-block border-right" style="float: left; width: 52%;">
-                      <h5 class="description-header"><%= link_to "Give 1 point", customer_loyalty_point_loyalty_point_transactions_path(@customer.id, loyalty_point.id, :trans_type => "get-point"), class: "btn btn-primary btn-sm", :method => :post %><br>
-                          <%= link_to " Give Point Request", new_customer_loyalty_point_loyalty_point_transaction_path(loyalty_point.customer.id, loyalty_point.id),class: "btn btn-primary btn-sm", :style =>"margin-top:6px;" %></h5>
+                      <h5 class="description-header"><%#= link_to "Give 1 point", customer_loyalty_point_loyalty_point_transactions_path(@customer.id, loyalty_point.id, :trans_type => "get-point"), class: "btn btn-primary btn-sm", :method => :post %>
+                          <%= link_to "Give Point", new_customer_loyalty_point_loyalty_point_transaction_path(loyalty_point.customer.id, loyalty_point.id),class: "btn btn-primary btn-sm" %></h5>
                     </div>
                     <!-- /.description-block -->
                     <div class="description-block" style="float: right; width: 48%;">
