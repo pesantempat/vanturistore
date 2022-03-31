@@ -1,6 +1,6 @@
 class LoyaltyPointTransactionMailer < ApplicationMailer
 
-	default from: "The Iron Bee <confirmation@bisniscepat.com>"
+	default from: "VanturiStore <confirmation@bisniscepat.com>"
 
   def get_point (loyalty_point, loyalty_point_transaction)
     #@loyalty_point_transaction = loyalty_point_transaction
@@ -14,7 +14,7 @@ class LoyaltyPointTransactionMailer < ApplicationMailer
 
     mail to: @loyalty_point.customer.email,
     	 #cc: @t_reservasi.email_pemesan,
-    	 subject: "Point The Iron Bee"
+    	 subject: "Point VanturiStore"
   end
 
   def redeemed_point (loyalty_point, loyalty_point_transaction)
@@ -29,6 +29,6 @@ class LoyaltyPointTransactionMailer < ApplicationMailer
 
     mail to: @loyalty_point.customer.email,
     	 #cc: @t_reservasi.email_pemesan,
-    	 subject: "Redeemed Point The Iron Bee"
+    	 subject: "Redeemed Point VanturiStore"
   end
 end

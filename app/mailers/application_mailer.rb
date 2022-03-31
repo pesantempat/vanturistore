@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'The Iron Bee <confirmation@bisniscepat.com>'
+  default from: 'VanturiStore <confirmation@bisniscepat.com>'
   layout 'mailer'
 end
