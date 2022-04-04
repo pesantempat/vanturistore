@@ -83,12 +83,15 @@
                     <div class="form-group">
                       <%= f.password_field :password, :class =>"form-control", :required => true, :autocomplete =>"new-password" %>
                       <span class="form-label">Password</span>
+                      <input type="checkbox" onclick="myFunction()">Show Password
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= f.password_field :password_confirmation, :class =>"form-control", :required => true, :autocomplete =>"new-password" %>
                       <span class="form-label">Password Confirmation</span>
+
+                      <input type="checkbox" onclick="myFunctionconfirmation()">Show Password Confirmation
                     </div>
                   </div>
                 </div>
@@ -109,6 +112,30 @@
       </div>
     </div>
   </div>
+
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("customer_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+<script>
+function myFunctionconfirmation() {
+  var x = document.getElementById("customer_password_confirmation");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

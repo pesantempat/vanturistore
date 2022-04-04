@@ -77,4 +77,5 @@ Rails.application.configure do
     ssl: true,
     tls: true
   }
+  
 end

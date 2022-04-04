@@ -73,8 +73,13 @@
                     <td style="text-align: center;"><%= loyalty_program.point_loyalty %></td>
                     <td><%= loyalty_program.start_loyalty.strftime("%d/%m/%Y") %></td>
                     <td><%= loyalty_program.end_loyalty.strftime("%d/%m/%Y") %></td>
-                    <td style="text-align: center;"><%= loyalty_program.status_loyalty %></td>
-                    <td><%= loyalty_program.keterangan_loyalty %></td>
+                    <td style="text-align: center;"><% if loyalty_program.status_loyalty === "Actived" %> 
+                          <button style="color: #fff; background-color: green; border-color: #000;"><%= loyalty_program.status_loyalty %></button>
+                    <%else%>
+                          <button style="background-color: red; color: #fff; border-color: #000;"><%= loyalty_program.status_loyalty %></button>
+                    <%end%>
+                    <td style="text-align: center;"><%= loyalty_program.keterangan_loyalty %></td>
+                    </td>
                     <td><%= link_to 'Show', t_mitra_loyalty_program_path(@t_mitra,loyalty_program), :class =>"btn-sm btn-info" %>
                     <%= link_to 'Edit', edit_t_mitra_loyalty_program_path(loyalty_program.t_mitra, loyalty_program), :class =>"btn-sm btn-success" %>
                     <%#= link_to 'Destroy', t_mitra_loyalty_program_path(loyalty_program.t_mitra, loyalty_program), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn-sm btn-danger" %></td>
@@ -114,7 +119,7 @@
 <script>
   $(document).ready(function() {
     $('#example').DataTable( {
-      "order": [[ 1, "asc" ]]
+      "order": [[ 4, "asc" ]]
     } );
 } );
 </script>
