@@ -50,7 +50,7 @@ root :to => 'home#landingpage'
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-devise_for :customers, path: 'customers', controllers: { sessions: "customers/sessions", registrations: "customers/registrations", passwords: "customers/passwords", omniauth_callbacks: "customers/omniauth_callbacks"}, skip: [:sessions, :registrations]
+devise_for :customers, path: 'customers', controllers: { sessions: "customers/sessions", registrations: "customers/registrations", passwords: "customers/passwords", confirmations: "customers/confirmations", omniauth_callbacks: "customers/omniauth_callbacks"}, skip: [:sessions, :registrations]
 
 resources :customers
 

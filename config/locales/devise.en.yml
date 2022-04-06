@@ -3,11 +3,11 @@
 en:
   devise:
     confirmations:
-      confirmed: "Your email address has been successfully confirmed."
-      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirmed: "Email anda berhasil di konfirmasi, Silahkan anda login"
+      send_instructions: "Anda akan menerima email berisi petunjuk tentang cara mengonfirmasi alamat email Anda dalam beberapa menit."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
-      already_authenticated: "You are already signed in."
+      already_authenticated: "Anda sudah login."
       inactive: "Your account is not activated yet. Please contact admin if you want to activated your account"
       invalid: "%{authentication_keys} atau password anda salah."
       locked: "Your account is locked."
@@ -34,8 +34,8 @@ en:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "Kami sudah mengirim link ke email anda untuk ganti password. Tolong cek link di email anda."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      updated: "Your password has been changed successfully. You are now signed in."
-      updated_not_active: "Your password has been changed successfully."
+      updated: "Password Anda telah berhasil diubah. Anda sekarang masuk."
+      updated_not_active: "Password Anda telah berhasil diubah."
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -55,7 +55,7 @@ en:
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
+      already_confirmed: "sudah di konfirmasi, Silahkan anda login kembali"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
       not_found: "tidak terdaftar"
