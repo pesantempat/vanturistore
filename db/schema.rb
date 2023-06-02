@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2022_01_18_193457) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "name"
     t.text "image"
     t.string "verification_code"
     t.boolean "is_verified", default: false
