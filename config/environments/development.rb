@@ -66,13 +66,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: "mail.bisniscepat.com",
+    address: "",
     port: 465,
-    domain: "bisniscepat.com",
+    domain: "",
     authentication: :plain,
     enable_starttls_auto: true,
-    user_name: "confirmation@bisniscepat.com",
-    password: "Latief12!",
+    user_name: "",
+    password: "",
     openssl_verify_mode: "none",
     ssl: true,
     tls: true
